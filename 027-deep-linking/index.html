@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<!-- ########################################################################################### -->
+<!-- Deep linking demo — pre-set dates and filters via URL query parameters.                     -->
+<!-- Supported params: ?from=dd-mm-yyyy&to=dd-mm-yyyy&profileItemId=x&profileIds=1,2,3          -->
+<!-- The page parses these from the URL and passes them as initOptions to the controller.        -->
+<!-- ########################################################################################### -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSOB – Deep Linking</title>
+
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f4f8;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        p.desc {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .page-layout {
+            display: grid;
+            grid-template-columns: 320px 220px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 1000px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .left-panel {
+            position: sticky;
+            top: 20px;
+        }
+
+        .link-builder {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .link-builder h2 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .field input {
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .field.wide {
+            grid-column: 1 / -1;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .example-links {
+            margin-bottom: 16px;
+        }
+
+        .example-links strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .example-links a {
+            display: block;
+            margin-bottom: 6px;
+            padding: 6px 10px;
+            background: #2ecc71;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .example-links a:hover {
+            background: #27ae60;
+        }
+
+        .active-params {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+            font-size: 11px;
+        }
+
+        .info-table th,
+        .info-table td {
+            text-align: left;
+            padding: 4px 6px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-table th {
+            background: #f8f9fa;
+        }
+
+        .info-table code {
+            background: #eee;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .right-panel {
+            min-width: 0;
+        }
+
+        .middle-panel {
+            position: sticky;
+            top: 20px;
+        }
+
+        #BookingContainer {
+            min-height: 400px;
+        }
+
+        .csob-wrapper {
+            min-height: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>027 – Deep Linking</h1>
+    <p class="desc">Pre-set dates and filters via URL query parameters. Left panel builds the query, right panel shows
+        the booking site.</p>
+
+    <div class="page-layout">
+
+        <!-- LEFT: Query builder panel -->
+        <div class="left-panel">
+
+            <!-- Active parameters -->
+            <div class="active-params" id="ActiveParams">
+                <strong>Active:</strong> <span id="ParamDisplay">None — using defaults</span>
+            </div>
+
+            <!-- Link builder with date pickers -->
+            <div class="link-builder">
+                <h2>Build &amp; apply deep link</h2>
+                <div class="fields">
+                    <div class="field">
+                        <label>From date</label>
+                        <input type="date" id="inputFrom">
+                    </div>
+                    <div class="field">
+                        <label>To date</label>
+                        <input type="date" id="inputTo">
+                    </div>
+                    <div class="field">
+                        <label>Profile IDs (comma-sep)</label>
+                        <input type="text" id="inputProfileIds" placeholder="e.g. 101,102,103">
+                    </div>
+                    <div class="field">
+                        <label>Profile Item ID</label>
+                        <input type="text" id="inputProfileItemId" placeholder="e.g. 1">
+                    </div>
+                    <div class="field">
+                        <label>Site ID</label>
+                        <input type="text" id="inputSiteId" placeholder="e.g. 1">
+                    </div>
+                    <div class="field">
+                        <label>Language</label>
+                        <input type="text" id="inputLanguage" placeholder="e.g. en, da, de, se, no">
+                    </div>
+                    <div class="field wide">
+                        <label>Filter (comma-sep names or IDs)</label>
+                        <input type="text" id="inputFilter" placeholder="e.g. Glamping,Zelt or metadata IDs">
+                        <small style="color:#888; font-size:11px; margin-top:3px; display:block;">
+                            Note: profileIds and profileItemId filter results but are not reflected in the filter
+                            checkboxes.
+                            Only ?filter= affects the visible filter panel.
+                        </small>
+                    </div>
+                </div>
+                <button class="btn" id="ApplyLink">Apply (reload with params)</button>
+            </div>
+
+            <!-- Example links -->
+            <div class="example-links" id="ExampleLinks">
+                <strong>Example links (dynamic dates):</strong>
+            </div>
+
+            <!-- Reference table -->
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Param</th>
+                        <th>Option</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>from</code></td>
+                        <td><code>from</code></td>
+                        <td>Start date (dd-mm-yyyy)</td>
+                    </tr>
+                    <tr>
+                        <td><code>to</code></td>
+                        <td><code>to</code></td>
+                        <td>End date (dd-mm-yyyy)</td>
+                    </tr>
+                    <tr>
+                        <td><code>pids</code></td>
+                        <td><code>profileIds</code></td>
+                        <td>Multiple profile IDs</td>
+                    </tr>
+                    <tr>
+                        <td><code>pid</code></td>
+                        <td><code>profileId</code></td>
+                        <td>Single profile ID</td>
+                    </tr>
+                    <tr>
+                        <td><code>piid</code></td>
+                        <td><code>profileItemId</code></td>
+                        <td>Shop item deep-link</td>
+                    </tr>
+                    <tr>
+                        <td><code>siteid</code></td>
+                        <td><code>siteId</code></td>
+                        <td>Limit to site</td>
+                    </tr>
+                    <tr>
+                        <td><code>lang</code></td>
+                        <td><code>language</code></td>
+                        <td>UI language</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div><!-- /.left-panel -->
+
+        <!-- MIDDLE: Profile filter -->
+        <div class="middle-panel">
+            <div id="ProfileFilterWrapper" class="csob-wrapper"></div>
+        </div><!-- /.middle-panel -->
+
+        <!-- RIGHT: Booking site -->
+        <div class="right-panel">
+            <div id="BookingContainer">
+                <div id="CalendarWrapper" class="csob-wrapper"></div>
+                <div id="ErrorPanelWrapper" class="csob-wrapper"></div>
+                <div id="CalendarSmallWrapper" class="csob-wrapper"></div>
+                <div id="ProfileResultListWrapper" class="csob-wrapper"></div>
+                <div id="CartWrapper" class="csob-wrapper"></div>
+            </div>
+        </div><!-- /.right-panel -->
+
+    </div><!-- /.page-layout -->
+
+    <script>
+        (function () {
+            'use strict';
+
+            // ─── Helper: convert yyyy-mm-dd (HTML date input) to dd-mm-yyyy (CSOB format)
+            function htmlDateToCsob(isoDate) {
+                if (!isoDate) return '';
+                var parts = isoDate.split('-'); // yyyy-mm-dd
+                return parts[2] + '-' + parts[1] + '-' + parts[0];
+            }
+
+            // ─── Helper: convert dd-mm-yyyy to yyyy-mm-dd (for pre-filling date inputs)
+            function csobDateToHtml(csobDate) {
+                if (!csobDate) return '';
+                var parts = csobDate.split('-'); // dd-mm-yyyy
+                return parts[2] + '-' + parts[1] + '-' + parts[0];
+            }
+
+            // ─── Helper: add days to a date and return dd-mm-yyyy
+            function addDays(date, days) {
+                var d = new Date(date);
+                d.setDate(d.getDate() + days);
+                return pad(d.getDate()) + '-' + pad(d.getMonth() + 1) + '-' + d.getFullYear();
+            }
+
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+            // ─── Generate dynamic example links ────────────────────────────
+            (function buildExampleLinks() {
+                var today = new Date();
+                // Start 1 month from now (always in the future)
+                var base = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+                var from7 = addDays(base, 0);
+                var to7 = addDays(base, 7);
+                var from14 = addDays(base, 14);
+                var to14 = addDays(base, 21);
+                var fromWe = addDays(base, 7);
+                var toWe = addDays(base, 9);  // weekend = 2 nights
+
+                var links = [
+                    { q: 'from=' + from7 + '&to=' + to7, label: '+1 month, 7 nights' },
+                    { q: 'from=' + from14 + '&to=' + to14, label: '+6 weeks, 7 nights' },
+                    { q: 'from=' + fromWe + '&to=' + toWe, label: '+5 weeks, weekend (2 nights)' },
+                    { q: 'from=' + from7 + '&to=' + to7 + '&filter=Glamping', label: '7 nights + filter: Glamping' },
+                    { q: 'from=' + from7 + '&to=' + to7 + '&filter=Zelt', label: '7 nights + filter: Zelt' },
+                    { q: 'from=' + from7 + '&to=' + to7 + '&profileIds=101,102', label: '7 nights + Profiles 101,102' },
+                    { q: 'from=' + from7 + '&to=' + to7 + '&profileItemId=1', label: '7 nights + Item 1' },
+                    { q: 'lang=en', label: 'English' },
+                    { q: 'lang=de', label: 'German' },
+                    { q: 'lang=da', label: 'Danish' },
+                    { q: 'from=' + from7 + '&to=' + to7 + '&lang=en', label: '7 nights + English' },
+                    { q: 'from=' + from7 + '&to=' + to7 + '&siteId=1', label: '7 nights + Site 1' },
+                    { q: '', label: 'Reset (no params)' }
+                ];
+
+                var container = document.getElementById('ExampleLinks');
+                links.forEach(function (link) {
+                    var a = document.createElement('a');
+                    a.href = '?' + link.q;
+                    a.textContent = link.label;
+                    container.appendChild(a);
+                });
+            })();
+
+            // ─── Parse URL query parameters ────────────────────────────────
+            var params = new URLSearchParams(window.location.search);
+            var from = params.get('from');               // dd-mm-yyyy
+            var to = params.get('to');                   // dd-mm-yyyy
+            var profileIds = params.get('profileIds');   // comma-separated
+            var profileItemId = params.get('profileItemId');
+            var siteId = params.get('siteId');
+            var language = params.get('lang');
+            var filter = params.get('filter');           // metadata ID or name
+
+            // Show active params
+            var display = [];
+            if (from) display.push('from=' + from);
+            if (to) display.push('to=' + to);
+            if (profileIds) display.push('profileIds=' + profileIds);
+            if (profileItemId) display.push('profileItemId=' + profileItemId);
+            if (siteId) display.push('siteId=' + siteId);
+            if (language) display.push('lang=' + language);
+            if (filter) display.push('filter=' + filter);
+            if (display.length > 0) {
+                document.getElementById('ParamDisplay').textContent = display.join(', ');
+            }
+
+            // Pre-fill form fields from current params
+            if (from) document.getElementById('inputFrom').value = csobDateToHtml(from);
+            if (to) document.getElementById('inputTo').value = csobDateToHtml(to);
+            if (profileIds) document.getElementById('inputProfileIds').value = profileIds;
+            if (profileItemId) document.getElementById('inputProfileItemId').value = profileItemId;
+            if (siteId) document.getElementById('inputSiteId').value = siteId;
+            if (language) document.getElementById('inputLanguage').value = language;
+            if (filter) document.getElementById('inputFilter').value = filter;
+
+            // ─── Build initOptions with deep link parameters ───────────────
+            var initOptions = {
+                csobPortalKey: CSOB_PORTAL_KEY,
+                csobHost: CSOB_HOST,
+
+                // Wrappers
+                errorPanelWrapper: '#ErrorPanelWrapper',
+                initialCalendarWrapper: '#CalendarWrapper',
+                secondaryCalendarWrapper: '#CalendarSmallWrapper',
+                profileFilterWrapper: '#ProfileFilterWrapper',
+                profileListWrapper: '#ProfileResultListWrapper',
+                cartWrapper: '#CartWrapper'
+            };
+
+            // Deep link options — only set if present in URL
+            if (from) initOptions.from = from;
+            if (to) initOptions.to = to;
+            if (profileIds) initOptions.profileIds = profileIds;
+            if (profileItemId) initOptions.profileItemId = profileItemId;
+            if (siteId) initOptions.siteId = siteId;
+            if (language) initOptions.language = language;
+
+            // ─── Initialize ────────────────────────────────────────────────
+            setTimeout(function () {
+                new csob.Controller(initOptions);
+            });
+
+            // ─── Apply button — reload page with query string ──────────────
+            document.getElementById('ApplyLink').addEventListener('click', function () {
+                var qParts = [];
+                var f = htmlDateToCsob(document.getElementById('inputFrom').value);
+                var t = htmlDateToCsob(document.getElementById('inputTo').value);
+                var pids = document.getElementById('inputProfileIds').value.trim();
+                var piid = document.getElementById('inputProfileItemId').value.trim();
+                var sid = document.getElementById('inputSiteId').value.trim();
+                var lang = document.getElementById('inputLanguage').value.trim();
+                var flt = document.getElementById('inputFilter').value.trim();
+
+                if (f) qParts.push('from=' + f);
+                if (t) qParts.push('to=' + t);
+                if (pids) qParts.push('profileIds=' + encodeURIComponent(pids));
+                if (piid) qParts.push('profileItemId=' + encodeURIComponent(piid));
+                if (sid) qParts.push('siteId=' + encodeURIComponent(sid));
+                if (lang) qParts.push('lang=' + encodeURIComponent(lang));
+                if (flt) qParts.push('filter=' + encodeURIComponent(flt));
+
+                // Reload with new query string
+                window.location.search = qParts.length ? '?' + qParts.join('&') : '';
+            });
+        })();
+    </script>
+</body>
+
+</html>

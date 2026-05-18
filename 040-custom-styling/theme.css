@@ -1,0 +1,173 @@
+/* ─── CSOB Theme ──────────────────────────────────────────────────── */
+/* Change these variables to re-theme all CSOB controls at once.        */
+/* Then use targeted selectors below for fine-grained overrides.        */
+
+:root {
+    /* Brand colors — change these to match your site */
+    --brand-primary: #e9168c;
+    /* pink — used for headers, accents */
+    --brand-secondary: #8ec449;
+    /* green — used for actions, selections */
+    --brand-dark: #2c3e50;
+    /* dark — page chrome */
+
+    /* Derived values */
+    --brand-primary-light: rgba(233, 22, 140, 0.15);
+    --brand-secondary-light: rgba(142, 196, 73, 0.2);
+
+    /* Component styling */
+    --csob-radius: 10px;
+    --csob-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --csob-shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── All CSOB components ─────────────────────────────────────────── */
+/* .csob-content is the outermost container inside each wrapper.        */
+
+.csob-content {
+    border: none !important;
+    border-radius: var(--csob-radius) !important;
+    box-shadow: var(--csob-shadow) !important;
+}
+
+/* ─── Calendar (large) ────────────────────────────────────────────── */
+/* Target elements by their [name] attribute or CSOB class names.       */
+
+#CalendarWrapper div[name=LargeCalendarControlContainer] {
+    border-radius: calc(var(--csob-radius) * 2) !important;
+    box-shadow: var(--csob-shadow-lg);
+}
+
+/* Month tracker sidebar */
+#CalendarWrapper div[name=MonthTrackerContainer] {
+    background-color: var(--brand-primary);
+}
+
+/* Calendar header text */
+#CalendarWrapper span[name=CalendarHeader] {
+    color: var(--brand-secondary);
+}
+
+/* Navigation arrows — replace default images with CSS shapes */
+#CalendarWrapper a[name=CalendarPrevMonth] img,
+#CalendarWrapper a[name=CalendarNextMonth] img {
+    display: none;
+}
+
+#CalendarWrapper a[name=CalendarPrevMonth],
+#CalendarWrapper a[name=CalendarNextMonth] {
+    background-color: var(--brand-secondary);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    position: relative;
+}
+
+#CalendarWrapper a[name=CalendarPrevMonth]::after,
+#CalendarWrapper a[name=CalendarNextMonth]::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-top: solid white 3px;
+    border-left: solid white 3px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#CalendarWrapper a[name=CalendarPrevMonth]::after {
+    transform: translate(-30%, -50%) rotate(-45deg);
+}
+
+#CalendarWrapper a[name=CalendarNextMonth]::after {
+    transform: translate(-70%, -50%) rotate(135deg);
+}
+
+/* Day cells */
+#CalendarWrapper .csob-cal-table-week {
+    color: var(--brand-secondary) !important;
+}
+
+#CalendarWrapper .csob-cal-day-today {
+    border: solid var(--brand-secondary) 2px !important;
+    border-radius: var(--csob-radius);
+}
+
+#CalendarWrapper .csob-cal-day-hover-background {
+    background-color: var(--brand-secondary-light) !important;
+    border-radius: var(--csob-radius);
+}
+
+#CalendarWrapper .csob-cal-day-selected {
+    background-color: var(--brand-secondary) !important;
+    border-radius: var(--csob-radius);
+    color: #fff !important;
+    font-weight: bold;
+}
+
+/* ─── Filter panel ────────────────────────────────────────────────── */
+
+#ProfileFilterWrapper .csob-content {
+    background-color: var(--brand-primary) !important;
+}
+
+#ProfileFilterWrapper div[name=Content] {
+    background-color: transparent !important;
+}
+
+#ProfileFilterWrapper .profile-filter-group-selector-name,
+#ProfileFilterWrapper .profile-filter-group-selector-button i,
+#ProfileFilterWrapper .profile-filter-name,
+#ProfileFilterWrapper .profile-filter-counter {
+    color: #fff;
+}
+
+/* ─── Result list ─────────────────────────────────────────────────── */
+
+#ProfileResultListWrapper .btn {
+    background-color: var(--brand-secondary) !important;
+    border: 0;
+    border-radius: 5px;
+}
+
+#ProfileResultListWrapper .badge {
+    background-color: var(--brand-secondary) !important;
+}
+
+/* ─── Cart ────────────────────────────────────────────────────────── */
+
+#CartWrapper .button__continue,
+#CartWrapper .button__main {
+    background-color: var(--brand-secondary) !important;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+#CartWrapper .cartLineItem .item__line {
+    background-color: var(--brand-primary) !important;
+}
+
+#CartWrapper .cartLineItem .item__line::after {
+    background-color: var(--brand-primary) !important;
+}
+
+#CartWrapper .progress__step.step__current {
+    box-shadow: inset 0 -2px 0 0 var(--brand-primary) !important;
+}
+
+#CartWrapper .progress__step.step__current .step__name {
+    color: var(--brand-primary) !important;
+}
+
+/* ─── Deals carousel ──────────────────────────────────────────────── */
+
+#DealsCarouselWrapper .deals-frame {
+    border-radius: var(--csob-radius) !important;
+    box-shadow: var(--csob-shadow) !important;
+    border: 0;
+}
+
+#DealsCarouselWrapper .shift-slide {
+    background-color: var(--brand-primary) !important;
+    color: #fff !important;
+}

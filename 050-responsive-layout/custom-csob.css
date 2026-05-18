@@ -1,0 +1,15 @@
+/* ─── Custom CSS targeting CSOB internal classes ──────────────────── */
+/* You can override the default look of CSOB controls by targeting      */
+/* their internal class names. Inspect the rendered DOM to find them.    */
+
+/* Add a subtle card-style shadow to all CSOB component containers */
+.csob-content {
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Example: tighten padding inside the calendar header */
+.csob-content .calendar-header {
+    padding: 8px 12px !important;
+}

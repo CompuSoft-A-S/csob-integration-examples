@@ -15,18 +15,21 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            new csob.Controller({
-                csobPortalKey: CSOB_PORTAL_KEY
-                , csobHost: CSOB_HOST
-                , displayMode: 'STANDARD'
-                , mainWrapper: '#csob-app'
+            setTimeout(function () {
+                new csob.Controller({
+                    csobPortalKey: CSOB_PORTAL_KEY
+                    , csobHost: CSOB_HOST
+                    , displayMode: 'STANDARD'
+                    , mainWrapper: '#csob-app'
+                });
             });
         });
     </script>
 </head>
 
 <body>
-    <div id="csob-app"></div>
+    <!-- This is the only element you provide. CSOB renders everything inside it. -->
+    <div id="csob-app" style="border: 3px solid red;"></div>
 </body>
 
 </html>

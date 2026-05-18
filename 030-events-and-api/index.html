@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<!-- ############################################################################################################################### -->
+<!-- This demo focuses on interaction with the CSOB controller – listening to events and calling methods on the CSOB Controller API. -->
+<!-- ############################################################################################################################### -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSOB – Events and API</title>
+
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Top bar: language selector + cart badge (your own UI – talks to the controller API) -->
+    <nav id="TopBar">
+        <div id="LanguageSelector">
+            <button data-lang="da">Dansk</button>
+            <button data-lang="en">English</button>
+            <button data-lang="de">Deutsch</button>
+            <button data-lang="se">Svenska</button>
+            <button data-lang="no">Norsk</button>
+        </div>
+        <button id="ReloadDemo" onclick="location.replace(location.origin + location.pathname)">⟳ Reload demo</button>
+        <button id="CartButton">🛒 <span id="CartBadge">Empty</span></button>
+    </nav>
+
+    <!-- CSOB wrappers -->
+    <div id="MainContainer">
+        <aside id="LeftColumn">
+            <div id="ProfileFilterWrapper" class="csob-wrapper"></div>
+        </aside>
+
+        <main id="CenterColumn">
+            <div id="ErrorPanelWrapper" class="csob-wrapper"></div>
+            <div id="CalendarWrapper" class="csob-wrapper"></div>
+            <div id="CalendarSmallWrapper" class="csob-wrapper"></div>
+            <div id="ProfileResultListWrapper" class="csob-wrapper"></div>
+            <div id="CartWrapper" class="csob-wrapper"></div>
+        </main>
+
+        <aside id="RightColumn">
+            <div id="DealsCarouselWrapper" class="csob-wrapper"></div>
+        </aside>
+    </div>
+
+    <!-- Bottom bar: payment icons + legal links (your own UI – talks to the controller API) -->
+    <nav id="BottomBar">
+        <span id="PaymentMethods"></span>
+        <a href="#" id="TermsLink">Terms and conditions</a>
+        <a href="#" id="PrivacyLink">Privacy policy</a>
+    </nav>
+
+    <!-- Permanent demo callouts anchored to bottom corners -->
+    <div class="demo-callout bottom-left">showTermsAndConditions() / showPrivacyPolicy()<br>— opens the portal's legal
+        texts in an overlay</div>
+    <div class="demo-callout bottom-right">getCardImageUrls(cb)<br>— onFinishedCallback fetches payment icons from the
+        API</div>
+
+    <!-- Centered event callout -->
+    <div class="demo-callout event-info">
+        ⚡ Events (callbacks) — check console.log<br>
+        <strong>cartWatch(cart)</strong> — fires on every cart change<br>
+        <strong>onFinishedCallback</strong> — fires once when controller is ready
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

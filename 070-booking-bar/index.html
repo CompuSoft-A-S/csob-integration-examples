@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<!-- ########################################################################################### -->
+<!-- Booking Bar demo — a compact search bar on a landing page that redirects to a results page  -->
+<!-- using deep link query parameters.                                                           -->
+<!--                                                                                             -->
+<!-- Two views in one file:                                                                      -->
+<!-- 1. Landing page with only the booking bar (when no ?from= in URL)                          -->
+<!-- 2. Results page with full CSOB booking flow (when ?from=&to= is present)                   -->
+<!--                                                                                             -->
+<!-- The built-in CSOB booking bar requires `bookingBarAllowed: true` in portal settings.       -->
+<!-- This demo shows both approaches:                                                            -->
+<!--   A) The init options for the built-in bar (if the portal supports it)                     -->
+<!--   B) A custom HTML bar with the same deep link redirect behavior                           -->
+<!-- ########################################################################################### -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSOB – Booking Bar</title>
+
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+        }
+
+        /* ─── Landing page (booking bar only) ─────────────────────────── */
+        .landing {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .landing h1 {
+            font-size: 2.4rem;
+            margin-bottom: 8px;
+        }
+
+        .landing p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* ─── Booking bar (custom HTML) ───────────────────────────────── */
+        .booking-bar {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 12px;
+            padding: 24px 28px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: flex-end;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .booking-bar .field {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .booking-bar label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .booking-bar input[type="date"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #333;
+            transition: border-color 0.2s;
+        }
+
+        .booking-bar input[type="date"]:focus {
+            outline: none;
+            border-color: #2e86c1;
+        }
+
+        .booking-bar .search-btn {
+            padding: 12px 28px;
+            background: #2e86c1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .booking-bar .search-btn:hover {
+            background: #1a5276;
+        }
+
+        .landing-footer {
+            margin-top: 60px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* ─── Results page ────────────────────────────────────────────── */
+        .results-page {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .results-header h1 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .results-header a {
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .results-header a:hover { text-decoration: underline; }
+
+        .results-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .results-layout { grid-template-columns: 1fr; }
+        }
+
+        .results-sidebar { min-width: 0; }
+        .results-main { min-width: 0; }
+        .csob-wrapper { min-height: 40px; margin-bottom: 10px; }
+
+        .active-search {
+            background: #d4efdf;
+            border: 1px solid #27ae60;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .info-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .info-box h3 { margin-top: 0; font-size: 14px; color: #333; }
+        .info-box code { background: #eee; padding: 1px 4px; border-radius: 3px; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 1: Landing page with booking bar                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div class="landing" id="LandingPage" style="display: none;">
+        <h1>Welcome to Our Campsite</h1>
+        <p>Find your perfect stay. Choose dates below and search for available accommodations.</p>
+
+        <!-- Custom HTML booking bar — redirects with CSOB deep link params -->
+        <form class="booking-bar" id="CustomBookingBar" onsubmit="return handleSearch()">
+            <div class="field">
+                <label for="barFrom">Check-in</label>
+                <input type="date" id="barFrom" required>
+            </div>
+            <div class="field">
+                <label for="barTo">Check-out</label>
+                <input type="date" id="barTo" required>
+            </div>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <div class="landing-footer">
+            Booking bar → deep link → results page
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 2: Results page (shown when ?from=&to= is present)           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div class="results-page" id="ResultsPage" style="display: none;">
+        <div class="results-header">
+            <h1>Results</h1>
+            <a href="?">&#8592; Back to booking bar</a>
+        </div>
+
+        <div class="active-search" id="ActiveSearch"></div>
+
+        <div class="results-layout">
+            <div class="results-sidebar">
+                <div id="CalendarSmallWrapper" class="csob-wrapper"></div>
+                <div id="ProfileFilterWrapper" class="csob-wrapper"></div>
+            </div>
+            <div class="results-main">
+                <div id="ErrorPanelWrapper" class="csob-wrapper"></div>
+                <div id="ProfileResultListWrapper" class="csob-wrapper"></div>
+                <div id="CartWrapper" class="csob-wrapper"></div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>How it works</h3>
+            <p>
+                The <strong>booking bar</strong> builds a URL with <code>?from=DD-MM-YYYY&amp;to=DD-MM-YYYY</code>
+                and navigates here. The CSOB controller reads the query parameters and displays results for the selected period.
+            </p>
+            <p>
+                In production, the booking bar would typically live on the homepage, and <code>searchUrl</code>
+                points to a dedicated booking page.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var params = new URLSearchParams(window.location.search);
+            var from = params.get('from');
+            var to = params.get('to');
+            var isResultsPage = from && to;
+
+            if (isResultsPage) {
+                // ─── RESULTS PAGE ──────────────────────────────────────────
+                document.getElementById('ResultsPage').style.display = 'block';
+
+                // Show active search params
+                var parts = ['from: ' + from, 'to: ' + to];
+                var filter = params.get('filter');
+                var siteId = params.get('siteId');
+                var lang = params.get('lang');
+                if (filter) parts.push('filter: ' + filter);
+                if (siteId) parts.push('siteId: ' + siteId);
+                if (lang) parts.push('language: ' + lang);
+                document.getElementById('ActiveSearch').innerHTML =
+                    '<strong>Active search:</strong> ' + parts.join(' &middot; ');
+
+                // Initialize full booking flow with deep link params
+                var initOptions = {
+                    csobPortalKey: CSOB_PORTAL_KEY,
+                    csobHost: CSOB_HOST,
+                    from: from,
+                    to: to,
+                    errorPanelWrapper: '#ErrorPanelWrapper',
+                    secondaryCalendarWrapper: '#CalendarSmallWrapper',
+                    profileFilterWrapper: '#ProfileFilterWrapper',
+                    profileListWrapper: '#ProfileResultListWrapper',
+                    cartWrapper: '#CartWrapper'
+                };
+
+                if (siteId) initOptions.siteId = siteId;
+                if (lang) initOptions.language = lang;
+
+                setTimeout(function () { new csob.Controller(initOptions); });
+
+            } else {
+                // ─── LANDING PAGE (Booking Bar) ────────────────────────────
+                document.getElementById('LandingPage').style.display = '';
+
+                // Set default dates (tomorrow → tomorrow + 3 days)
+                var tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                var checkout = new Date(tomorrow);
+                checkout.setDate(checkout.getDate() + 3);
+
+                document.getElementById('barFrom').value = formatDateISO(tomorrow);
+                document.getElementById('barTo').value = formatDateISO(checkout);
+
+                // NOTE: If the portal has bookingBarAllowed: true in server settings,
+                // you can use the built-in CSOB booking bar instead of the custom HTML form.
+                // See the bookingBarSettings example in comments at the bottom of this file.
+            }
+
+            // ─── Helper: format Date as YYYY-MM-DD for input[type=date] ──
+            function formatDateISO(d) {
+                return d.getFullYear() + '-' +
+                    String(d.getMonth() + 1).padStart(2, '0') + '-' +
+                    String(d.getDate()).padStart(2, '0');
+            }
+
+            // ─── Helper: format Date as DD-MM-YYYY for CSOB query params ─
+            function formatDateCSob(d) {
+                return String(d.getDate()).padStart(2, '0') + '-' +
+                    String(d.getMonth() + 1).padStart(2, '0') + '-' +
+                    d.getFullYear();
+            }
+
+            // ─── Search handler for the custom booking bar ───────────────
+            window.handleSearch = function () {
+                var fromVal = document.getElementById('barFrom').value;
+                var toVal = document.getElementById('barTo').value;
+                if (!fromVal || !toVal) return false;
+
+                // Convert from YYYY-MM-DD (input value) to DD-MM-YYYY (CSOB format)
+                var fromParts = fromVal.split('-');
+                var toParts = toVal.split('-');
+                var fromCsob = fromParts[2] + '-' + fromParts[1] + '-' + fromParts[0];
+                var toCsob = toParts[2] + '-' + toParts[1] + '-' + toParts[0];
+
+                // Redirect with CSOB deep link params
+                var url = window.location.pathname + '?from=' + fromCsob + '&to=' + toCsob;
+                window.location.href = url;
+                return false;
+            };
+        })();
+    </script>
+</body>
+
+</html>

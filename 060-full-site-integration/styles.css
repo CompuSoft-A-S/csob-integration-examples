@@ -1,0 +1,78 @@
+/* ─── Page layout ─────────────────────────────────────────────────── */
+
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    margin-bottom: 0;
+    line-height: normal;
+}
+
+/* Space before footer */
+footer {
+    margin-top: 40px;
+}
+
+/* ─── Cart button states ──────────────────────────────────────────── */
+
+#CartButton {
+    cursor: default;
+}
+
+#CartButton.has-items {
+    cursor: pointer;
+    border-color: #2ecc71;
+}
+
+#CartBadge.has-items {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* ─── CSOB wrappers ───────────────────────────────────────────────── */
+
+.csob-wrapper {
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+
+/* ─── Calendar in sidebar: hide month tracker, force compact ──────── */
+
+#CalendarWrapper div[name="MonthTrackerContainer"] {
+    display: none;
+}
+
+#CalendarWrapper div[name=LargeCalendarControlContainer] {
+    min-width: auto;
+    height: auto;
+}
+
+#CalendarWrapper .csob-cal-header {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#CalendarWrapper .csob-cal-day-names {
+    font-size: 12px;
+}
+
+#CalendarWrapper .csob-cal-days td {
+    font-size: 12px;
+    padding-top: 8px;
+}
+
+#CalendarWrapper .csob-cal-table-footer {
+    display: none;
+}
+
+/* ─── Language buttons same width ─────────────────────────────────── */
+
+#LanguageSelector .btn {
+    min-width: 40px;
+    text-align: center;
+}
+
+/* ─── Footer ──────────────────────────────────────────────────────── */
+
+footer a:hover {
+    color: #fff !important;
+}

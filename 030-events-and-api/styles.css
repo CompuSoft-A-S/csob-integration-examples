@@ -1,0 +1,215 @@
+/* ─── Page layout ─────────────────────────────────────────────────── */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background: #f0f4f8;
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+/* ─── Top bar ─────────────────────────────────────────────────────── */
+
+#TopBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: #2c3e50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+#LanguageSelector button {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 4px 10px;
+    margin-right: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#LanguageSelector button:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#ReloadDemo {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+#ReloadDemo:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#CartButton {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 3px;
+    cursor: default;
+    font-size: 14px;
+}
+
+#CartButton.clickable {
+    cursor: pointer;
+}
+
+#CartBadge.has-items {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* ─── Main layout ─────────────────────────────────────────────────── */
+
+#MainContainer {
+    display: flex;
+    gap: 16px;
+    max-width: 1500px;
+    margin: 16px auto;
+    padding: 0 16px;
+}
+
+#LeftColumn,
+#RightColumn {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+#CenterColumn {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ─── Bottom bar ──────────────────────────────────────────────────── */
+
+#BottomBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: #2c3e50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    font-size: 13px;
+    z-index: 1000;
+}
+
+#BottomBar a {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+#BottomBar a:hover {
+    text-decoration: underline;
+}
+
+#PaymentMethods img {
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* ─── Demo callout (arrow tooltip) ────────────────────────────────── */
+
+.demo-callout {
+    position: fixed;
+    z-index: 9999;
+    background: #e74c3c;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: callout-in 0.3s ease;
+    max-width: 400px;
+}
+
+/* Arrow pointing up */
+.demo-callout.arrow-up::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #e74c3c;
+}
+
+/* Arrow pointing down */
+.demo-callout.arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #e74c3c;
+}
+
+/* Static bottom-corner callouts (anchored above the bottom bar) */
+.demo-callout.bottom-left {
+    bottom: 46px;
+    left: 16px;
+}
+
+.demo-callout.bottom-left::after {
+    display: none;
+}
+
+.demo-callout.bottom-right {
+    bottom: 46px;
+    right: 16px;
+}
+
+.demo-callout.bottom-right::after {
+    display: none;
+}
+
+/* Centered event callout (different color) */
+.demo-callout.event-info {
+    background: #8e44ad;
+    bottom: 46px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    max-width: 450px;
+}
+
+.demo-callout.event-info::after {
+    display: none;
+}
+
+@keyframes callout-in {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

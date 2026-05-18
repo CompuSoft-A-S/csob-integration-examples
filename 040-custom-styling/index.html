@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<!-- ################################################################################################################# -->
+<!-- This demo focuses on custom styling of CSOB controls using CSS variables and targeted selectors.                   -->
+<!-- CSOB renders its own DOM inside your wrappers — you can override the look by targeting internal class names.       -->
+<!-- Use browser DevTools to inspect the rendered elements and find class/attribute names to target.                    -->
+<!-- ################################################################################################################# -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSOB – Custom Styling</title>
+
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <!-- Custom CSOB theme using CSS variables -->
+    <link href="theme.css" rel="stylesheet">
+    <!-- Page layout -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="page-header">
+        <h1>040 – Custom Styling</h1>
+        <button onclick="location.replace(location.origin + location.pathname)">⟳ Reload</button>
+    </header>
+
+    <div class="layout">
+        <div class="layout-calendar">
+            <div id="CalendarWrapper" class="csob-wrapper"></div>
+        </div>
+
+        <div class="layout-sidebar">
+            <div id="ProfileFilterWrapper" class="csob-wrapper"></div>
+            <div id="DealsCarouselWrapper" class="csob-wrapper"></div>
+        </div>
+
+        <div class="layout-main">
+            <div id="ErrorPanelWrapper" class="csob-wrapper"></div>
+            <div id="CalendarSmallWrapper" class="csob-wrapper"></div>
+            <div id="ProfileResultListWrapper" class="csob-wrapper"></div>
+        </div>
+
+        <div class="layout-cart">
+            <div id="CartWrapper" class="csob-wrapper"></div>
+        </div>
+    </div>
+
+    <!-- Info panel -->
+    <div class="demo-info-panel">
+        <strong>040 – Custom Styling with CSS Variables</strong><br>
+        All colors are defined as CSS custom properties in <code>theme.css</code> — change them to re-theme the entire
+        booking UI.<br>
+        CSOB internal classes (e.g. <code>.csob-content</code>, <code>.csob-cal-day-selected</code>,
+        <code>div[name=...]</code>) can be targeted with CSS.<br>
+        <span class="hint">Open theme.css and change --brand-primary to see instant results.</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
