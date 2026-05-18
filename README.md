@@ -16,21 +16,30 @@ CSOB is a JavaScript booking framework that embeds into existing websites. It is
 ## Getting started
 
 1. Clone or download this repository.
-2. Open any `.html` file directly in a browser, or serve them with any static file server.
+2. Serve the files through a local web server (do not open directly via `file://` — the controller loads external scripts and stylesheets that require HTTP/HTTPS).
 3. Replace `YOUR-PORTAL-KEY` (or the demo key) with your own portal key from CompuSoft.
+
+### Serving locally
+
+**Python** (built-in, no install needed):
+
+```bash
+cd csob-integration-examples
+python -m http.server 8000
+# Open http://localhost:8000/demo1-quick-start.html
+```
+
+**Node.js** (via npx, no global install needed):
+
+```bash
+cd csob-integration-examples
+npx serve .
+# Open the URL shown in the terminal
+```
 
 ## Portal key
 
 A portal key is required to use CSOB. It is provided as part of your V3 subscription. Contact CompuSoft to obtain one.
-
-## Documentation
-
-See `intro.md` in this repository for a full developer introduction covering:
-
-- Standard mode vs. wrapper mode
-- Layout ownership model
-- Controller API (methods and watches)
-- Communication flow with the CSOB WebAPI
 
 ## Requirements
 
