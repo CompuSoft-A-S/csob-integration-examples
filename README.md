@@ -10,16 +10,16 @@ CSOB is a JavaScript booking framework that embeds into existing websites. It is
 
 Each folder is a self-contained example, numbered by complexity:
 
-| Folder | Description |
-|--------|-------------|
-| [`010-standard-mode`](010-standard-mode/) | Minimal setup — one script, one div, four config lines. CSOB handles all layout. |
-| [`020-custom-layout`](020-custom-layout/) | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers. |
+| Folder                                    | Live demo                                                                            | Description                                                                            |
+| ----------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| [`010-standard-mode`](010-standard-mode/) | [demo](https://compusoft-a-s.github.io/csob-integration-examples/010-standard-mode/) | Minimal setup — one script, one div, four config lines. CSOB handles all layout.       |
+| [`020-custom-layout`](020-custom-layout/) | [demo](https://compusoft-a-s.github.io/csob-integration-examples/020-custom-layout/) | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers. |
 
 ## Getting started
 
 1. Clone or download this repository.
-2. Serve the files through a local web server (do not open directly via `file://` — the controller loads external scripts and stylesheets that require HTTP/HTTPS).
-3. Replace `YOUR-PORTAL-KEY` (or the demo key) with your own portal key from CompuSoft.
+2. Copy `config.example.js` to `config.js` and add your portal key.
+3. Serve the files through a local web server (do not open via `file://` — the controller loads external scripts that require HTTP/HTTPS).
 
 ### Serving locally
 
@@ -41,15 +41,22 @@ npx serve .
 
 ## Portal key
 
-All examples load `config.js` from the repository root. To use your own portal key, edit that single file:
+All examples load `config.js` from the repository root. This file is **gitignored** so your key is never committed.
+
+Setup:
+
+```bash
+cp config.example.js config.js
+```
+
+Then edit `config.js` with your portal key:
 
 ```js
-// config.js
 var CSOB_PORTAL_KEY = 'your-key-here';
 var CSOB_HOST = 'https://v3.onlinebooking.dk/';
 ```
 
-A portal key is required to use CSOB. It is provided as part of your V3 subscription. Contact CompuSoft to obtain one.
+A portal key is provided as part of your V3 subscription. Contact CompuSoft to obtain one.
 
 ## Requirements
 
