@@ -6,13 +6,6 @@ Integration examples for Compusoft Online Booking V3 (CSOB).
 
 CSOB is a JavaScript booking framework that embeds into existing websites. It is loaded via a single script tag and controlled through a configuration object. No build tools or server-side setup required.
 
-## Examples
-
-| File | Description |
-|------|-------------|
-| `demo1-quick-start.html` | Minimal setup using `displayMode: 'STANDARD'`. One script, one div, four config lines. CSOB handles all layout and styling. |
-| `demo2-custom-layout.html` | Wrapper-based integration where the host page owns the layout. Each CSOB control is placed into a specific container via CSS flexbox. Includes visual labels showing host vs. CSOB areas. |
-
 ## Getting started
 
 1. Clone or download this repository.
