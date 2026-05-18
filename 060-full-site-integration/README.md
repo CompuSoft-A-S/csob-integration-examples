@@ -29,7 +29,7 @@ python -m http.server 8000
 | ------------ | ---------------------------------------------------------- |
 | `index.html` | Complete page structure — navbar, sidebar, main, footer    |
 | `styles.css` | All layout styles + CSOB overrides (compact cal, etc.)     |
-| `app.js`     | Controller init, cart toggle, language switcher, callbacks  |
+| `app.js`     | Controller init, cart toggle, language switcher, callbacks |
 
 ## Layout
 

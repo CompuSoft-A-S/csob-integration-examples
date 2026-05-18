@@ -51,24 +51,24 @@ new csob.Controller({
 
 ## Available booking bar elements
 
-| Element key        | Description                                    |
-| ------------------ | ---------------------------------------------- |
-| `datePickerFrom`   | Check-in date picker                           |
-| `datePickerTo`     | Check-out date picker                          |
-| `profileSelector`  | Dropdown to select accommodation type/profile  |
-| `siteSelector`     | Dropdown to select site (multi-site portals)   |
-| `typeSelector`     | Dropdown to select type                        |
-| `filterSelector`   | Dropdown to select metadata filter             |
-| `searchButton`     | Search button with redirect URL                |
+| Element key       | Description                                   |
+| ----------------- | --------------------------------------------- |
+| `datePickerFrom`  | Check-in date picker                          |
+| `datePickerTo`    | Check-out date picker                         |
+| `profileSelector` | Dropdown to select accommodation type/profile |
+| `siteSelector`    | Dropdown to select site (multi-site portals)  |
+| `typeSelector`    | Dropdown to select type                       |
+| `filterSelector`  | Dropdown to select metadata filter            |
+| `searchButton`    | Search button with redirect URL               |
 
 ## Related options
 
-| Option                               | Description                                           |
-| ------------------------------------ | ----------------------------------------------------- |
-| `bookingBarOpenCsobHostInNewWindow`   | If true, search opens in a new window                 |
-| `bookingBarOnSearch`                  | Event: fires when search is executed                  |
-| `bookingBarOnShow`                   | Event: fires when bar becomes visible                 |
-| `bookingBarOnHide`                   | Event: fires when bar is hidden                       |
+| Option                              | Description                           |
+| ----------------------------------- | ------------------------------------- |
+| `bookingBarOpenCsobHostInNewWindow` | If true, search opens in a new window |
+| `bookingBarOnSearch`                | Event: fires when search is executed  |
+| `bookingBarOnShow`                  | Event: fires when bar becomes visible |
+| `bookingBarOnHide`                  | Event: fires when bar is hidden       |
 
 ## Use case
 

@@ -22,15 +22,15 @@ python -m http.server 8000
 
 ## Supported query parameters
 
-| Param          | Init option      | Description                              |
-| -------------- | ---------------- | ---------------------------------------- |
-| `from`         | `from`           | Start date (dd-mm-yyyy)                  |
-| `to`           | `to`             | End date (dd-mm-yyyy)                    |
-| `profileIds`   | `profileIds`     | Comma-separated profile IDs              |
-| `profileItemId`| `profileItemId`  | Deep-link to specific shop item          |
-| `siteId`       | `siteId`         | Limit to site (multi-site portals)       |
-| `lang`         | `language`        | UI language (en, da, de, se, no)         |
-| `filter`       | _(read by CSOB)_ | Metadata filter name(s), comma-separated |
+| Param           | Init option      | Description                              |
+| --------------- | ---------------- | ---------------------------------------- |
+| `from`          | `from`           | Start date (dd-mm-yyyy)                  |
+| `to`            | `to`             | End date (dd-mm-yyyy)                    |
+| `profileIds`    | `profileIds`     | Comma-separated profile IDs              |
+| `profileItemId` | `profileItemId`  | Deep-link to specific shop item          |
+| `siteId`        | `siteId`         | Limit to site (multi-site portals)       |
+| `lang`          | `language`       | UI language (en, da, de, se, no)         |
+| `filter`        | _(read by CSOB)_ | Metadata filter name(s), comma-separated |
 
 ## Important notes
 

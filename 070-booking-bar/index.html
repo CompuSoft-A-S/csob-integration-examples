@@ -25,7 +25,9 @@
     <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
 
     <style>
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: system-ui, sans-serif;
@@ -153,7 +155,9 @@
             font-size: 14px;
         }
 
-        .results-header a:hover { text-decoration: underline; }
+        .results-header a:hover {
+            text-decoration: underline;
+        }
 
         .results-layout {
             display: grid;
@@ -163,12 +167,23 @@
         }
 
         @media (max-width: 768px) {
-            .results-layout { grid-template-columns: 1fr; }
+            .results-layout {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .results-sidebar { min-width: 0; }
-        .results-main { min-width: 0; }
-        .csob-wrapper { min-height: 40px; margin-bottom: 10px; }
+        .results-sidebar {
+            min-width: 0;
+        }
+
+        .results-main {
+            min-width: 0;
+        }
+
+        .csob-wrapper {
+            min-height: 40px;
+            margin-bottom: 10px;
+        }
 
         .active-search {
             background: #d4efdf;
@@ -189,8 +204,17 @@
             color: #555;
         }
 
-        .info-box h3 { margin-top: 0; font-size: 14px; color: #333; }
-        .info-box code { background: #eee; padding: 1px 4px; border-radius: 3px; }
+        .info-box h3 {
+            margin-top: 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .info-box code {
+            background: #eee;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 
@@ -248,7 +272,8 @@
             <h3>How it works</h3>
             <p>
                 The <strong>booking bar</strong> builds a URL with <code>?from=DD-MM-YYYY&amp;to=DD-MM-YYYY</code>
-                and navigates here. The CSOB controller reads the query parameters and displays results for the selected period.
+                and navigates here. The CSOB controller reads the query parameters and displays results for the selected
+                period.
             </p>
             <p>
                 In production, the booking bar would typically live on the homepage, and <code>searchUrl</code>
