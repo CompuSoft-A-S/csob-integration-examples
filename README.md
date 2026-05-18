@@ -12,8 +12,8 @@ Each folder is a self-contained example, numbered by complexity:
 
 | Folder                                    | Live demo                                                                            | Description                                                                            |
 | ----------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| [`010-standard-mode`](010-standard-mode/) | [demo](https://compusoft-a-s.github.io/csob-integration-examples/010-standard-mode/) | Minimal setup — one script, one div, four config lines. CSOB handles all layout.       |
-| [`020-custom-layout`](020-custom-layout/) | [demo](https://compusoft-a-s.github.io/csob-integration-examples/020-custom-layout/) | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers. |
+| [`010-standard-mode`](010-standard-mode/) | [demo](https://compusoft-a-s.github.io/csob-integration-examples/010-standard-mode/index.html) | Minimal setup — one script, one div, four config lines. CSOB handles all layout.       |
+| [`020-custom-layout`](020-custom-layout/) | [demo](https://compusoft-a-s.github.io/csob-integration-examples/020-custom-layout/index.html) | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers. |
 
 ## Getting started
 
