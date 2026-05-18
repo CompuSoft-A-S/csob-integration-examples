@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<!-- ######################################################################################### -->
+<!-- Demo 1: Quick start — the simplest way to embed CSOB using the built-in STANDARD template -->
+<!-- ######################################################################################### -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compusoft Onlinebooking - Quick start</title>
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new csob.Controller({
+                csobPortalKey: CSOB_PORTAL_KEY
+                , csobHost: CSOB_HOST
+                , displayMode: 'STANDARD'
+                , mainWrapper: '#csob-app'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="csob-app"></div>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<!-- ########################################################################################################## -->
+<!-- This demo focuses on showing how to initialize the CSOB Controller with the control containers (wrappers). -->
+<!-- ########################################################################################################## -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compusoft Onlinebooking - Custom layout</title>
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller scripts -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <!-- Your page styles -->
+    <style>
+        body {
+            margin: 0;
+            background-color: rgba(180, 201, 233, 0.42);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            min-width: 1540px;
+            padding-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 20px;
+        }
+
+        #MainContainer {
+            width: 1540px;
+            margin: 0 auto;
+        }
+
+        .layout-row {
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .host-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+            background-color: #78b452;
+            box-sizing: border-box;
+        }
+
+        .host-content-top {
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .host-content-bottom {
+            height: 45px;
+            margin-top: 10px;
+        }
+
+        .host-content-side-top {
+            height: 85px;
+            margin-bottom: 10px;
+        }
+
+        .host-content-side-bottom {
+            height: 330px;
+            margin-top: 10px;
+        }
+
+        .host-content-right {
+            height: 610px;
+        }
+
+        #LeftContainer,
+        #CenterContainer,
+        #RightContainer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #LeftContainer,
+        #RightContainer {
+            width: 300px;
+        }
+
+        #CenterContainer {
+            width: 900px;
+        }
+
+        #ErrorPanelWrapper,
+        #CartWrapper,
+        #CalendarWrapper,
+        #ProfileFilterWrapper,
+        #DealsCarouselWrapper,
+        #CalendarSmallWrapper,
+        #ProfileResultListWrapper {
+            border: none !important;
+            margin-bottom: 10px;
+        }
+
+        #ErrorPanelWrapper {
+            display: none;
+        }
+
+        #ProfileFilterWrapper,
+        #CalendarWrapper,
+        #CalendarSmallWrapper,
+        #ProfileResultListWrapper,
+        #DealsCarouselWrapper,
+        #CartWrapper {
+            display: block;
+            position: relative;
+            background-color: rgba(118, 167, 220, 0.18);
+            outline: 8px solid #3f6f9f;
+            outline-offset: 0;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+            box-sizing: border-box;
+        }
+
+        /* Container name labels */
+        .csob-wrapper::before {
+            content: attr(id);
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            background: #3f6f9f;
+            padding: 2px 8px;
+            border-radius: 3px;
+            z-index: 1;
+            letter-spacing: 0.3px;
+        }
+
+        .host-content::before {
+            content: attr(data-label);
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.85;
+            letter-spacing: 0.3px;
+        }
+
+        #ProfileFilterWrapper {
+            min-height: 510px;
+            margin-bottom: 0;
+        }
+
+        #CalendarWrapper {
+            display: block;
+            position: relative;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+            min-height: 190px;
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        #ProfileResultListWrapper {
+            min-height: 610px;
+            margin-bottom: 0;
+        }
+
+        #DealsCarouselWrapper {
+            min-height: 340px;
+        }
+
+        .csob-content {
+            border: none !important;
+            border-radius: 3px !important;
+            background-color: transparent !important;
+            -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.07);
+            -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.07);
+        }
+
+        div[name="CartControlContainer"] .cart__wrapper .cart__main .main__content .item {
+            margin-left: 15px !important;
+        }
+    </style>
+    <!-- Your page scripts -->
+    <script>
+        (function () {
+            var csobController = null;
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Configuration of CompuSoft OnlineBooking Engine (csobController)    
+                var initOptions = {
+                    csobPortalKey: CSOB_PORTAL_KEY
+                    , csobHost: CSOB_HOST
+                    , redirectURLOnFeatureNotSupported: 'www.compusoft.com'
+                    , errorPanelWrapper: '#ErrorPanelWrapper'
+                    , initialCalendarWrapper: '#CalendarWrapper'
+                    , secondaryCalendarWrapper: '#CalendarSmallWrapper'
+                    , profileFilterWrapper: '#ProfileFilterWrapper'
+                    , profileListWrapper: '#ProfileResultListWrapper'
+                    , dealsCarouselWrapper: '#DealsCarouselWrapper'
+                    , cartWrapper: '#CartWrapper'
+                };
+                // Initialize csobController
+                csobController = new csob.Controller(initOptions);
+            });
+        })();        
+    </script>
+</head>
+
+<body>
+    <!-- An "csob-wrapper" class must be on every container holding an csob control (CompuSoft OnlineBooking control) -->
+    <div class="container">
+        <div id="MainContainer">
+            <!-- The "Terms and conditions", "Shopping cart" and "Language selector" are not implemented in this demo - this is to keep the layout concept minimal and clear -->
+            <div class="host-content host-content-top" data-label="Your content (header / nav)"></div>
+
+            <div class="layout-row">
+                <div id="LeftContainer">
+                    <div class="host-content host-content-side-top" data-label="Your content"></div>
+                    <!-- This is the filter control wrapper -->
+                    <div id="ProfileFilterWrapper" class="csob-wrapper"></div>
+                    <div class="host-content host-content-side-bottom" data-label="Your content"></div>
+                </div>
+
+                <div id="CenterContainer">
+                    <!-- Shopping cart -->
+                    <div id="CartWrapper" class="csob-wrapper"></div>
+                    <!-- System, business, access and unhandled error messages are shown in this panel (some business error messages are shown in dialogs) -->
+                    <div id="ErrorPanelWrapper" class="csob-wrapper"></div>
+                    <!-- This is the "large" calendar wrapper -->
+                    <div id="CalendarWrapper" class="csob-wrapper"></div>
+                    <!-- This is the "small" calendar wrapper -->
+                    <div id="CalendarSmallWrapper" class="csob-wrapper"></div>
+                    <!-- This is the search result list wrapper -->
+                    <div id="ProfileResultListWrapper" class="csob-wrapper"></div>
+                </div>
+
+                <div id="RightContainer">
+                    <!-- This is the "deals" carousel wrapper -->
+                    <div id="DealsCarouselWrapper" class="csob-wrapper"></div>
+                    <div class="host-content host-content-right" data-label="Your content"></div>
+                </div>
+            </div>
+
+            <div class="host-content host-content-bottom" data-label="Your content (footer)"></div>
+        </div>
+    </div>
+</body>
+
+</html>

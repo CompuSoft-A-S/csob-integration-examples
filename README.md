@@ -6,6 +6,15 @@ Integration examples for Compusoft Online Booking V3 (CSOB).
 
 CSOB is a JavaScript booking framework that embeds into existing websites. It is loaded via a single script tag and controlled through a configuration object. No build tools or server-side setup required.
 
+## Examples
+
+Each folder is a self-contained example, numbered by complexity:
+
+| Folder | Description |
+|--------|-------------|
+| [`010-standard-mode`](010-standard-mode/) | Minimal setup — one script, one div, four config lines. CSOB handles all layout. |
+| [`020-custom-layout`](020-custom-layout/) | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers. |
+
 ## Getting started
 
 1. Clone or download this repository.
@@ -19,7 +28,7 @@ CSOB is a JavaScript booking framework that embeds into existing websites. It is
 ```bash
 cd csob-integration-examples
 python -m http.server 8000
-# Open http://localhost:8000/demo1-quick-start.html
+# Open http://localhost:8000/010-standard-mode/
 ```
 
 **Node.js** (via npx, no global install needed):
@@ -31,6 +40,14 @@ npx serve .
 ```
 
 ## Portal key
+
+All examples load `config.js` from the repository root. To use your own portal key, edit that single file:
+
+```js
+// config.js
+var CSOB_PORTAL_KEY = 'your-key-here';
+var CSOB_HOST = 'https://v3.onlinebooking.dk/';
+```
 
 A portal key is required to use CSOB. It is provided as part of your V3 subscription. Contact CompuSoft to obtain one.
 
