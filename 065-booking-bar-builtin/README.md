@@ -16,14 +16,6 @@ Comprehensive showcase of CSOB's built-in booking bar widget — a compact searc
 - **`allowSameDayBooking`** — control whether same-day bookings are allowed
 - **Custom CSS theming** — fully restyled "fancy" bar with dark gradient, including the Pikaday calendar popup
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/065-booking-bar-builtin/
-```
-
 The page shows six bars side by side:
 
 1. **Horizontal – calendar (with results)** — full bar with calendar pickers and on-page results

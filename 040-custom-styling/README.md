@@ -9,14 +9,6 @@ Theming CSOB with CSS variables and targeted selectors. Override colors, border-
 - Targeting CSOB containers by attribute: `div[name="CalendarContainer"]`, etc.
 - An info panel explaining the approach
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/040-custom-styling/
-```
-
 ## Files
 
 | File         | Purpose                                                      |

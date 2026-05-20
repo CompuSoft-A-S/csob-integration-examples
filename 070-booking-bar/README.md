@@ -10,14 +10,6 @@ A compact search widget (the built-in CSOB Booking Bar) placed on a landing page
 - Two "pages" in one file: landing page (bar only) → results page (full booking flow)
 - The bar automatically appends `?from=dd-mm-yyyy&to=dd-mm-yyyy` to the `searchUrl`
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/070-booking-bar/
-```
-
 1. The landing page shows only the booking bar (date pickers + search button)
 2. Select dates and click "Search"
 3. The page reloads with `?from=...&to=...` → switches to results view

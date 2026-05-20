@@ -9,14 +9,6 @@ Booking opens as a fullscreen overlay triggered by a button click. The host page
 - Fullscreen overlay with built-in close button
 - Minimal host page impact — no wrappers needed in the visible page
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/025-modal-mode/
-```
-
 ## Key configuration
 
 ```js

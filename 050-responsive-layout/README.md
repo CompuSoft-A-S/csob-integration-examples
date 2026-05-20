@@ -9,14 +9,6 @@ Responsive grid using Bootstrap 5 with CSOB controls mapped to grid cells. Shows
 - Responsive breakpoints — layout reflows on mobile/tablet/desktop
 - Info panel explaining that Bootstrap is optional (any grid framework works)
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/050-responsive-layout/
-```
-
 ## Files
 
 | File              | Purpose                                         |

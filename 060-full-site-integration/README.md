@@ -15,14 +15,6 @@ A complete "CompuSoft Camping" website with CSOB fully embedded — navbar, hero
 - CSS to hide MonthTracker and force compact calendar in sidebar
 - `onReady` callback to get card image URLs
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/060-full-site-integration/
-```
-
 ## Files
 
 | File         | Purpose                                                    |

@@ -10,14 +10,6 @@ Interacting with the CSOB controller API after initialization — reacting to ev
 - **onReady callback**: Fires when the controller is fully loaded
 - **Reload button**: Re-initializes the controller without page reload
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/030-events-and-api/
-```
-
 ## Key API methods shown
 
 ```js

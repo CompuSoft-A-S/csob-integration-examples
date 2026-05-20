@@ -9,14 +9,6 @@ The host page owns the layout. Each CSOB control is placed into a specific conta
 - Visual labels showing which areas belong to the host vs. CSOB
 - All available wrapper options: `cartWrapper`, `errorPanelWrapper`, `initialCalendarWrapper`, `secondaryCalendarWrapper`, `profileFilterWrapper`, `profileListWrapper`, `dealsCarouselWrapper`
 
-## How to run
-
-```bash
-# From the repository root
-python -m http.server 8000
-# Open http://localhost:8000/020-custom-layout/
-```
-
 ## Key configuration
 
 ```js
