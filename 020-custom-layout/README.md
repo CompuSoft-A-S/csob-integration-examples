@@ -21,8 +21,8 @@ python -m http.server 8000
 
 ```js
 new csob.Controller({
-    csobPortalKey: 'YOUR-PORTAL-KEY',
-    csobHost: 'https://v3.onlinebooking.dk/',
+    csobPortalKey: CSOB_PORTAL_KEY,
+    csobHost: CSOB_HOST,
     errorPanelWrapper: '#ErrorPanelWrapper',
     initialCalendarWrapper: '#CalendarWrapper',
     secondaryCalendarWrapper: '#CalendarSmallWrapper',

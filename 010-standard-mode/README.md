@@ -20,11 +20,11 @@ python -m http.server 8000
 
 ```js
 new csob.Controller({
-    csobPortalKey: 'YOUR-PORTAL-KEY',
-    csobHost: 'https://v3.onlinebooking.dk/',
+    csobPortalKey: CSOB_PORTAL_KEY,
+    csobHost: CSOB_HOST,
     displayMode: 'STANDARD',
     mainWrapper: '#csob-app'
 });
 ```
 
-Only four options are needed. CSOB injects its own CSS and builds the complete booking interface inside the `mainWrapper` element.
+Only four options are needed. CSOB injects its own CSS and builds the complete booking interface inside the `mainWrapper` element. `CSOB_PORTAL_KEY` and `CSOB_HOST` come from `../config.js` (see the [root README](../README.md)).
