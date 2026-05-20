@@ -23,8 +23,14 @@
             background: #f5f7fa;
         }
 
-        h1 { margin: 0 0 20px; }
-        h2 { margin: 30px 0 10px; font-size: 1.2rem; }
+        h1 {
+            margin: 0 0 20px;
+        }
+
+        h2 {
+            margin: 30px 0 10px;
+            font-size: 1.2rem;
+        }
 
         .bar-section {
             margin-bottom: 40px;
@@ -34,7 +40,9 @@
             border-radius: 8px;
         }
 
-        .bar-section h2 { margin-top: 0; }
+        .bar-section h2 {
+            margin-top: 0;
+        }
 
         /* Fancy bar styling */
         .bar-fancy {
@@ -54,50 +62,181 @@
         }
 
         /* Fancy bar — booking bar items */
-        .bar-fancy .csobBookingBarWrapper { background: transparent !important; border: none !important; box-shadow: none !important; }
-        .bar-fancy .csob-item { background: rgba(255,255,255,0.08) !important; border-radius: 10px !important; border: 1px solid rgba(255,255,255,0.15) !important; backdrop-filter: blur(4px); }
-        .bar-fancy .csob-field__input { background: transparent !important; color: #fff !important; border: none !important; }
-        .bar-fancy .csob-field__input::placeholder { color: rgba(255,255,255,0.4) !important; }
-        .bar-fancy .csob-label { color: rgba(255,255,255,0.7) !important; font-size: 0.75rem !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; }
-        .bar-fancy button { background: #e94560 !important; color: #fff !important; border: none !important; border-radius: 10px !important; padding: 12px 28px !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 1px !important; transition: background 0.2s !important; }
-        .bar-fancy button:hover { background: #ff6b6b !important; }
-        .bar-fancy .number__picker { color: #fff !important; }
-        .bar-fancy .number__picker .label { color: #fff !important; }
-        .bar-fancy .number__picker i { color: #fff !important; }
-        .bar-fancy .dropdown { background: #1a1a2e !important; border: 1px solid rgba(255,255,255,0.15) !important; border-radius: 10px !important; }
-        .bar-fancy select { background: rgba(255,255,255,0.08) !important; color: #fff !important; border: 1px solid rgba(255,255,255,0.2) !important; border-radius: 6px !important; }
-        .bar-fancy .placeHolder, .bar-fancy .placeHolderSelected { color: rgba(255,255,255,0.6) !important; }
-        .bar-fancy .csob-field__input-wrapper { border: none !important; }
+        .bar-fancy .csobBookingBarWrapper {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .bar-fancy .csob-item {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-radius: 10px !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            backdrop-filter: blur(4px);
+        }
+
+        .bar-fancy .csob-field__input {
+            background: transparent !important;
+            color: #fff !important;
+            border: none !important;
+        }
+
+        .bar-fancy .csob-field__input::placeholder {
+            color: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        .bar-fancy .csob-label {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-size: 0.75rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+
+        .bar-fancy button {
+            background: #e94560 !important;
+            color: #fff !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 28px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            transition: background 0.2s !important;
+        }
+
+        .bar-fancy button:hover {
+            background: #ff6b6b !important;
+        }
+
+        .bar-fancy .number__picker {
+            color: #fff !important;
+        }
+
+        .bar-fancy .number__picker .label {
+            color: #fff !important;
+        }
+
+        .bar-fancy .number__picker i {
+            color: #fff !important;
+        }
+
+        .bar-fancy .dropdown {
+            background: #1a1a2e !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 10px !important;
+        }
+
+        .bar-fancy select {
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 6px !important;
+        }
+
+        .bar-fancy .placeHolder,
+        .bar-fancy .placeHolderSelected {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        .bar-fancy .csob-field__input-wrapper {
+            border: none !important;
+        }
 
         /* Fancy bar — Pikaday calendar styling (Pikaday renders on body, so we use a JS-added class) */
-        .pika-single.pika-fancy { background: #1a1a2e !important; border: 1px solid rgba(255,255,255,0.15) !important; border-radius: 12px !important; color: #fff !important; }
-        .pika-single.pika-fancy .pika-title { background: transparent !important; color: #e0e0e0 !important; }
-        .pika-single.pika-fancy .pika-label { color: #e0e0e0 !important; background: transparent !important; }
-        .pika-single.pika-fancy .pika-prev, .pika-single.pika-fancy .pika-next { background-color: transparent !important; }
-        .pika-single.pika-fancy th { color: rgba(255,255,255,0.5) !important; }
-        .pika-single.pika-fancy .pika-button { background: transparent !important; color: #e0e0e0 !important; border-radius: 6px !important; }
-        .pika-single.pika-fancy .pika-button:hover { background: rgba(233,69,96,0.3) !important; color: #fff !important; }
-        .pika-single.pika-fancy .is-selected .pika-button { background: #e94560 !important; color: #fff !important; box-shadow: 0 2px 8px rgba(233,69,96,0.4) !important; }
-        .pika-single.pika-fancy .is-today .pika-button { border: 1px solid rgba(255,255,255,0.3) !important; }
-        .pika-single.pika-fancy .is-disabled .pika-button { color: rgba(255,255,255,0.2) !important; }
-        .pika-single.pika-fancy .is-inrange .pika-button { background: rgba(233,69,96,0.15) !important; }
-        .pika-single.pika-fancy .is-startrange .pika-button, .pika-single.pika-fancy .is-endrange .pika-button { background: #e94560 !important; color: #fff !important; }
-        .pika-single.pika-fancy select { background: #16213e !important; color: #fff !important; border: 1px solid rgba(255,255,255,0.2) !important; }
+        .pika-single.pika-fancy {
+            background: #1a1a2e !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 12px !important;
+            color: #fff !important;
+        }
+
+        .pika-single.pika-fancy .pika-title {
+            background: transparent !important;
+            color: #e0e0e0 !important;
+        }
+
+        .pika-single.pika-fancy .pika-label {
+            color: #e0e0e0 !important;
+            background: transparent !important;
+        }
+
+        .pika-single.pika-fancy .pika-prev,
+        .pika-single.pika-fancy .pika-next {
+            background-color: transparent !important;
+        }
+
+        .pika-single.pika-fancy th {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .pika-single.pika-fancy .pika-button {
+            background: transparent !important;
+            color: #e0e0e0 !important;
+            border-radius: 6px !important;
+        }
+
+        .pika-single.pika-fancy .pika-button:hover {
+            background: rgba(233, 69, 96, 0.3) !important;
+            color: #fff !important;
+        }
+
+        .pika-single.pika-fancy .is-selected .pika-button {
+            background: #e94560 !important;
+            color: #fff !important;
+            box-shadow: 0 2px 8px rgba(233, 69, 96, 0.4) !important;
+        }
+
+        .pika-single.pika-fancy .is-today .pika-button {
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .pika-single.pika-fancy .is-disabled .pika-button {
+            color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .pika-single.pika-fancy .is-inrange .pika-button {
+            background: rgba(233, 69, 96, 0.15) !important;
+        }
+
+        .pika-single.pika-fancy .is-startrange .pika-button,
+        .pika-single.pika-fancy .is-endrange .pika-button {
+            background: #e94560 !important;
+            color: #fff !important;
+        }
+
+        .pika-single.pika-fancy select {
+            background: #16213e !important;
+            color: #fff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
 
         /* Consistent sizing for all bar sections */
-        .bar-section, .bar-fancy { max-width: 1200px; }
-        .csobBookingBarWrapper { min-height: 60px; }
-        .csob-item { min-height: 50px; }
+        .bar-section,
+        .bar-fancy {
+            max-width: 1200px;
+        }
+
+        .csobBookingBarWrapper {
+            min-height: 60px;
+        }
+
+        .csob-item {
+            min-height: 50px;
+        }
     </style>
 </head>
 
 <body>
     <h1>Built-in Booking Bar</h1>
-    <button onclick="window.location.href = window.location.pathname;" style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; margin-bottom: 20px;">Reset (remove query string)</button>
+    <button onclick="window.location.href = window.location.pathname;"
+        style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; margin-bottom: 20px;">Reset
+        (remove query string)</button>
 
-    <p><strong>Note:</strong> The portal must have <code>bookingBarAllowed: true</code> in its server settings for the bar to render.</p>
+    <p><strong>Note:</strong> The portal must have <code>bookingBarAllowed: true</code> in its server settings for the
+        bar to render.</p>
     <p><strong>Note:</strong> Using multiple controllers on the same page is not recommended in production.</p>
-    <p><strong>Note:</strong> Only the first bar (Horizontal – calendar) triggers a search with results. The others are display-only demos. The last bar uses <code>searchUrl</code> to redirect with query params instead.</p>
+    <p><strong>Note:</strong> Only the first bar (Horizontal – calendar) triggers a search with results. The others are
+        display-only demos. The last bar uses <code>searchUrl</code> to redirect with query params instead.</p>
 
     <div class="bar-section">
         <h2>Horizontal – calendar (with results)</h2>

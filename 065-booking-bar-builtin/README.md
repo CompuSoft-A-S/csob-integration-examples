@@ -85,23 +85,23 @@ new csob.Controller({
 
 ## Available elements
 
-| Element key       | Description                                                                                           |
-| ----------------- | ----------------------------------------------------------------------------------------------------- |
-| `datePickerFrom`  | Check-in date picker (`displayMode`: `'calendar'` \| `'select'` \| `'selectWithRangeTextInYears'`)    |
-| `datePickerTo`    | Check-out date picker (same `displayMode` values)                                                     |
+| Element key       | Description                                                                                          |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| `datePickerFrom`  | Check-in date picker (`displayMode`: `'calendar'` \| `'select'` \| `'selectWithRangeTextInYears'`)   |
+| `datePickerTo`    | Check-out date picker (same `displayMode` values)                                                    |
 | `varsSelector`    | Guest counter with one or more variables (e.g. `AV` adults, `AB` children) — popup with +/− steppers |
-| `typeSelector`    | Dropdown to select accommodation type                                                                 |
-| `profileSelector` | Dropdown to select a specific profile (cabin model)                                                   |
-| `siteSelector`    | Dropdown to select site (multi-site portals)                                                          |
-| `filterSelector`  | Dropdown to select a metadata filter                                                                  |
-| `searchButton`    | Search button — searches in-page, or redirects if `searchUrl` is set                                  |
+| `typeSelector`    | Dropdown to select accommodation type                                                                |
+| `profileSelector` | Dropdown to select a specific profile (cabin model)                                                  |
+| `siteSelector`    | Dropdown to select site (multi-site portals)                                                         |
+| `filterSelector`  | Dropdown to select a metadata filter                                                                 |
+| `searchButton`    | Search button — searches in-page, or redirects if `searchUrl` is set                                 |
 
 ## Display modes for date pickers
 
-| Mode                          | Result                                            |
-| ----------------------------- | ------------------------------------------------- |
-| `'calendar'`                  | Input field + Pikaday popup calendar              |
-| `'select'`                    | HTML `<select>` dropdown with available dates     |
+| Mode                           | Result                                           |
+| ------------------------------ | ------------------------------------------------ |
+| `'calendar'`                   | Input field + Pikaday popup calendar             |
+| `'select'`                     | HTML `<select>` dropdown with available dates    |
 | `'selectWithRangeTextInYears'` | Same as `select`, with date range shown in years |
 
 ## Search behavior

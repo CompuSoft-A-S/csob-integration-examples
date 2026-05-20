@@ -10,18 +10,18 @@ CSOB is a JavaScript booking framework that embeds into existing websites. It is
 
 Each folder is a self-contained example, numbered by complexity:
 
-| Folder                                                    | Description                                                                                      |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [`010-standard-mode`](010-standard-mode/)                 | Minimal setup — one script, one div, four config lines. CSOB handles all layout.                 |
-| [`020-custom-layout`](020-custom-layout/)                 | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers.           |
-| [`025-modal-mode`](025-modal-mode/)                       | Modal display mode — booking opens as a fullscreen overlay from a button click.                  |
-| [`027-deep-linking`](027-deep-linking/)                   | Deep linking — pre-set dates and filters via URL query parameters at init time.                  |
-| [`030-events-and-api`](030-events-and-api/)               | Interacting with the controller API — cart badge, language switcher, payment icons, legal links. |
-| [`040-custom-styling`](040-custom-styling/)               | Theming CSOB controls with CSS variables and targeted selectors.                                 |
-| [`050-responsive-layout`](050-responsive-layout/)         | Responsive grid with Bootstrap (or any framework) + custom CSS overrides.                        |
-| [`060-full-site-integration`](060-full-site-integration/) | Complete campsite website with CSOB embedded — navbar, hero, content, footer.                    |
+| Folder                                                    | Description                                                                                                                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`010-standard-mode`](010-standard-mode/)                 | Minimal setup — one script, one div, four config lines. CSOB handles all layout.                                                                             |
+| [`020-custom-layout`](020-custom-layout/)                 | Host page owns layout via flexbox. CSOB controls placed into named wrapper containers.                                                                       |
+| [`025-modal-mode`](025-modal-mode/)                       | Modal display mode — booking opens as a fullscreen overlay from a button click.                                                                              |
+| [`027-deep-linking`](027-deep-linking/)                   | Deep linking — pre-set dates and filters via URL query parameters at init time.                                                                              |
+| [`030-events-and-api`](030-events-and-api/)               | Interacting with the controller API — cart badge, language switcher, payment icons, legal links.                                                             |
+| [`040-custom-styling`](040-custom-styling/)               | Theming CSOB controls with CSS variables and targeted selectors.                                                                                             |
+| [`050-responsive-layout`](050-responsive-layout/)         | Responsive grid with Bootstrap (or any framework) + custom CSS overrides.                                                                                    |
+| [`060-full-site-integration`](060-full-site-integration/) | Complete campsite website with CSOB embedded — navbar, hero, content, footer.                                                                                |
 | [`065-booking-bar-builtin`](065-booking-bar-builtin/)     | Comprehensive showcase of CSOB's built-in booking bar — all layouts, display modes, elements, searchUrl redirect, and a fully custom-styled "fancy" variant. |
-| [`070-booking-bar`](070-booking-bar/)                     | Custom HTML booking bar that redirects to a results page via deep link query params.             |
+| [`070-booking-bar`](070-booking-bar/)                     | Custom HTML booking bar that redirects to a results page via deep link query params.                                                                         |
 
 ## Getting started
 
