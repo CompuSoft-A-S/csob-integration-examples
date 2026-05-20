@@ -20,7 +20,8 @@ Each folder is a self-contained example, numbered by complexity:
 | [`040-custom-styling`](040-custom-styling/)               | Theming CSOB controls with CSS variables and targeted selectors.                                 |
 | [`050-responsive-layout`](050-responsive-layout/)         | Responsive grid with Bootstrap (or any framework) + custom CSS overrides.                        |
 | [`060-full-site-integration`](060-full-site-integration/) | Complete campsite website with CSOB embedded — navbar, hero, content, footer.                    |
-| [`070-booking-bar`](070-booking-bar/)                     | Booking bar on a landing page that redirects to a results page via deep link query params.       |
+| [`065-booking-bar-builtin`](065-booking-bar-builtin/)     | Comprehensive showcase of CSOB's built-in booking bar — all layouts, display modes, elements, searchUrl redirect, and a fully custom-styled "fancy" variant. |
+| [`070-booking-bar`](070-booking-bar/)                     | Custom HTML booking bar that redirects to a results page via deep link query params.             |
 
 ## Getting started
 
