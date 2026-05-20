@@ -35,7 +35,7 @@ The page shows six bars side by side:
 
 ## Requirements
 
-The portal must have `bookingBarAllowed: true` in its server settings. This is **not** something you can set via init options — it must be enabled on the portal in the CompuSoft backend.
+The booking bar requires a server-side setting that can only be enabled by CompuSoft. It cannot be turned on via init options.
 
 ## Key configuration
 

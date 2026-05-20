@@ -8,7 +8,7 @@
 <!-- 1. Landing page with only the booking bar (when no ?from= in URL)                          -->
 <!-- 2. Results page with full CSOB booking flow (when ?from=&to= is present)                   -->
 <!--                                                                                             -->
-<!-- The built-in CSOB booking bar requires `bookingBarAllowed: true` in portal settings.       -->
+<!-- The built-in CSOB booking bar requires a server-side setting only CompuSoft can enable.   -->
 <!-- This demo shows both approaches:                                                            -->
 <!--   A) The init options for the built-in bar (if the portal supports it)                     -->
 <!--   B) A custom HTML bar with the same deep link redirect behavior                           -->
@@ -337,9 +337,10 @@
                 document.getElementById('barFrom').value = formatDateISO(tomorrow);
                 document.getElementById('barTo').value = formatDateISO(checkout);
 
-                // NOTE: If the portal has bookingBarAllowed: true in server settings,
-                // you can use the built-in CSOB booking bar instead of the custom HTML form.
-                // See the bookingBarSettings example in comments at the bottom of this file.
+                // NOTE: If the portal has the booking bar enabled (a server-side setting that
+                // only CompuSoft can turn on), you can use the built-in CSOB booking bar instead
+                // of the custom HTML form. See the bookingBarSettings example in comments at the
+                // bottom of this file.
             }
 
             // ─── Helper: format Date as YYYY-MM-DD for input[type=date] ──

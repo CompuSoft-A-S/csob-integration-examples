@@ -5,7 +5,7 @@
 <!-- Two controllers: one for the booking bar, one for the results below.                       -->
 <!-- The bar searches directly into the profileList via the same-page controller.               -->
 <!--                                                                                             -->
-<!-- Requirements: The portal must have `bookingBarAllowed: true` in server settings.           -->
+<!-- Requirements: A server-side setting must be enabled by CompuSoft for the bar to render.   -->
 <!-- ########################################################################################### -->
 
 <head>
@@ -232,8 +232,8 @@
         style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; margin-bottom: 20px;">Reset
         (remove query string)</button>
 
-    <p><strong>Note:</strong> The portal must have <code>bookingBarAllowed: true</code> in its server settings for the
-        bar to render.</p>
+    <p><strong>Note:</strong> The booking bar requires a server-side setting that can only be enabled by CompuSoft.
+    </p>
     <p><strong>Note:</strong> Using multiple controllers on the same page is not recommended in production.</p>
     <p><strong>Note:</strong> Only the first bar (Horizontal – calendar) triggers a search with results. The others are
         display-only demos. The last bar uses <code>searchUrl</code> to redirect with query params instead.</p>
