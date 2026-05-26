@@ -23,7 +23,7 @@
 /* Any non-card sibling in the list (e.g. the "Alternativer til forespurgt
    periode" section header CSOB inserts before alternative-date results)
    should span the full grid row instead of acting as a single grid cell. */
-#ProfileResultListWrapper div:has(> .csob-profile-container) > *:not(.csob-profile-container):not(.csob-profilelist-profile-splitter) {
+#ProfileResultListWrapper div:has(> .csob-profile-container)>*:not(.csob-profile-container):not(.csob-profilelist-profile-splitter) {
     grid-column: 1 / -1;
     background: #111 !important;
     color: #fff !important;
@@ -212,7 +212,8 @@
     padding-left: calc(50% + 4px) !important;
     border-top: 1px solid #eee !important;
     background: #fafbfc;
-    min-height: 76px; /* room for the absolute "Ekstra info" button on the left */
+    min-height: 76px;
+    /* room for the absolute "Ekstra info" button on the left */
     box-sizing: border-box;
 }
 

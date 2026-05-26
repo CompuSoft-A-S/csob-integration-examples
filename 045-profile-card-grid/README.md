@@ -13,9 +13,9 @@ Pure-CSS transformation of the default CSOB profile result list (one horizontal 
 
 ## Files
 
-| File            | Purpose                                                |
-| --------------- | ------------------------------------------------------ |
-| `index.html`    | Page layout (sidebar with filter + main result area)   |
+| File            | Purpose                                                 |
+| --------------- | ------------------------------------------------------- |
+| `index.html`    | Page layout (sidebar with filter + main result area)    |
 | `card-grid.css` | The CSS rules that transform the result list into cards |
 
 ## How it works
