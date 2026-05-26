@@ -1,0 +1,261 @@
+/* ============================================================================
+   Profile result list as a responsive card grid
+   ----------------------------------------------------------------------------
+   Targets CSOB's default classes on .csob-profile-container and its children.
+   No JS — all layout changes are done with CSS Grid + Flexbox.
+   ============================================================================ */
+
+/* ── Grid container ───────────────────────────────────────────────────────── */
+/* CSOB renders the result items as direct children of an unclassed div.
+   We pick that parent via :has() and turn it into a CSS Grid.                */
+#ProfileResultListWrapper div:has(> .csob-profile-container) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* CSOB injects a "splitter" div between cards — hide it so the grid is dense. */
+.csob-profilelist-profile-splitter {
+    display: none !important;
+}
+
+/* Any non-card sibling in the list (e.g. the "Alternativer til forespurgt
+   periode" section header CSOB inserts before alternative-date results)
+   should span the full grid row instead of acting as a single grid cell. */
+#ProfileResultListWrapper div:has(> .csob-profile-container) > *:not(.csob-profile-container):not(.csob-profilelist-profile-splitter) {
+    grid-column: 1 / -1;
+    background: #111 !important;
+    color: #fff !important;
+    padding: 12px 16px !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* ── Card shell ───────────────────────────────────────────────────────────── */
+.csob-profile-container {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex !important;
+    flex-direction: column;
+}
+
+.csob-profile-container:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Hide the small share-link icon that sits absolutely positioned in default */
+.csob-share-profile-link-button {
+    display: none !important;
+}
+
+/* ── Stack image / info / footer vertically inside each card ──────────────── */
+.csob-profile-main-area {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100%;
+}
+
+/* ── Image: full width, fixed aspect ratio ────────────────────────────────── */
+.csob-profile-area-image {
+    width: 100% !important;
+    aspect-ratio: 16 / 10;
+    flex: none !important;
+    margin: 0 !important;
+    overflow: hidden;
+    background: #eee;
+}
+
+.csob-profile-area-image .csob-profile-area-image-content-wrapper,
+.csob-profile-area-image img.profile-image.normal {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.csob-profile-area-image .profile-image.mobile {
+    display: none !important;
+}
+
+/* Image-gallery indicator icon */
+.csob-profile-area-image .fa-clone {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    bottom: 8px;
+    right: 8px;
+}
+
+/* ── Info area: title, description, metadata ──────────────────────────────── */
+.csob-profile-area-info {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 16px !important;
+    flex: 1 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.csob-profilelist-title .profile-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111;
+}
+
+.csob-profilelist-description-content {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.csob-profile-metadata-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: auto;
+    /* push to bottom of info area */
+}
+
+.csob-profile-metadata-list .profile-filter-icon-container i {
+    color: #555;
+}
+
+/* ── Price as floating badge in top-right of card ─────────────────────────── */
+.csob-profile-area-button .price {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(4px);
+    padding: 8px 14px;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+}
+
+.csob-profile-area-button .price .csob-profilelist-booking-from-txt {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #666;
+}
+
+.csob-profile-area-button .price .csob-profilelist-prev-price-wrapper:empty,
+.csob-profile-area-button .price .csob-profilelist-after-price-wrapper:empty {
+    display: none;
+}
+
+/* ── "Ekstra info" button — repurpose CSOB's description-toggle ─────────────
+   The description-toggle button lives inside `.csob-profile-area-info` in the
+   DOM. We absolutely position it into the bottom-left of the card so it sits
+   next to the Book button (which is in `.csob-profile-area-button`).         */
+.csobGroupeProfileShowDescription {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    width: calc(50% - 20px);
+    height: 44px;
+    z-index: 2;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px;
+    background: #fff !important;
+    color: #111 !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.csobGroupeProfileShowDescription:hover {
+    background: #f9fafb !important;
+    border-color: #9ca3af !important;
+}
+
+/* Replace the default arrow / "Se detaljer" content via CSS — keep the label
+   CSOB renders, but hide its trailing chevron if present. */
+.csobGroupeProfileShowDescription i,
+.csobGroupeProfileShowDescription .fa,
+.csobGroupeProfileShowDescription svg {
+    display: none !important;
+}
+
+/* ── Footer area: hide dates, push Book button to the right half ─────────── */
+.csob-profile-area-button {
+    width: 100% !important;
+    max-width: none !important;
+    display: flex !important;
+    justify-content: flex-end;
+    padding: 16px !important;
+    padding-left: calc(50% + 4px) !important;
+    border-top: 1px solid #eee !important;
+    background: #fafbfc;
+    min-height: 76px; /* room for the absolute "Ekstra info" button on the left */
+    box-sizing: border-box;
+}
+
+.csob-profile-area-button .dates {
+    display: none !important;
+}
+
+.csob-profile-area-button .buttons {
+    display: flex !important;
+    gap: 8px;
+    width: 100%;
+}
+
+.csob-profile-area-button .buttons .csob-btn {
+    flex: 1;
+    text-align: center;
+    height: 44px;
+}
+
+/* The actually-visible book button on this site is `csob-btn-book-action-pop-up`.
+   Style it (and the standard `book-unit-now`) as the primary call-to-action.   */
+.csob-btn.csob-btn-book-unit-now,
+.csob-btn.csob-btn-book-action-pop-up {
+    background: #111 !important;
+    border-color: #111 !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+}
+
+.csob-btn.csob-btn-book-unit-now:hover,
+.csob-btn.csob-btn-book-action-pop-up:hover {
+    background: #1f2937 !important;
+    border-color: #1f2937 !important;
+}
+
+/* ── Hide elements not needed in card view (optional) ─────────────────────── */
+.csob-profile-sub-area {
+    display: none !important;
+}
+
+/* ── Result-count header ──────────────────────────────────────────────────── */
+.csob-profilelist-header {
+    font-size: 1rem;
+    font-weight: 500;
+}
