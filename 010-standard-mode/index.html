@@ -21,15 +21,27 @@
                     , csobHost: CSOB_HOST
                     , displayMode: 'STANDARD'
                     , mainWrapper: '#csob-app'
+                    // In STANDARD mode CSOB auto-calculates the container height.
+                    // Set this to true if you want to control the height yourself
+                    // via CSS on the container (see the height rule below).
+                    , disableHeightCalc: true
                 });
             });
         });
     </script>
+    <style>
+        /* When `disableHeightCalc: true` is set, the host page owns the height.
+           Give the container a sensible height — e.g. full viewport, a fixed
+           pixel value, or whatever fits your layout. */
+        #csob-app {
+            height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
     <!-- This is the only element you provide. CSOB renders everything inside it. -->
-    <div id="csob-app" style="border: 3px solid red;"></div>
+    <div id="csob-app"></div>
 </body>
 
 </html>
