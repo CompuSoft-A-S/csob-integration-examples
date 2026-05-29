@@ -14,7 +14,6 @@ Booking opens as a fullscreen overlay triggered by a button click. The host page
 ```js
 var controller = new csob.Controller({
     csobPortalKey: CSOB_PORTAL_KEY,
-    csobHost: CSOB_HOST,
     displayMode: 'MODAL',
     mainWrapper: '#csob-modal-wrapper'
 });

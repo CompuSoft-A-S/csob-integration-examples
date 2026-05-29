@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSOB – Deep Linking</title>
 
-    <!-- Shared configuration (portal key, host) -->
+    <!-- Shared configuration (portal key) -->
     <script src="../config.js"></script>
     <!-- Load Compusoft Onlinebooking controller -->
     <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
@@ -417,7 +417,6 @@
             // ─── Build initOptions with deep link parameters ───────────────
             var initOptions = {
                 csobPortalKey: CSOB_PORTAL_KEY,
-                csobHost: CSOB_HOST,
 
                 // Wrappers
                 errorPanelWrapper: '#ErrorPanelWrapper',

@@ -79,7 +79,6 @@
     // internally once jQuery is available.
     var initOptions = {
         csobPortalKey: CSOB_PORTAL_KEY,
-        csobHost: CSOB_HOST,
 
         // Wrappers (string selectors)
         errorPanelWrapper: '#ErrorPanelWrapper',

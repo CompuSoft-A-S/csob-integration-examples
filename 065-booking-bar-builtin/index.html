@@ -331,7 +331,6 @@
             setTimeout(function () {
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     bookingBarWrapper: '#BarHCal',
                     profileListWrapper: '#ResultsHCal',
                     calendarShowAvailability: true,
@@ -340,7 +339,6 @@
 
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     bookingBarWrapper: '#BarVCal',
                     calendarShowAvailability: true,
                     bookingBarSettings: getBarSettings('vertical', 'calendar')
@@ -348,14 +346,12 @@
 
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     bookingBarWrapper: '#BarHDrop',
                     bookingBarSettings: getBarSettings('horizontal', 'select')
                 });
 
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     bookingBarWrapper: '#BarVDrop',
                     bookingBarSettings: getBarSettings('vertical', 'select')
                 });
@@ -363,7 +359,6 @@
                 // Fancy styled bar
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     bookingBarWrapper: '#BarFancy',
                     calendarShowAvailability: true,
                     calendarAutoSelectPeriod: 3,
@@ -389,7 +384,6 @@
                 // With searchUrl — clicking "Search" redirects to another page with query params
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     bookingBarWrapper: '#BarRedirect',
                     calendarAutoSelectPeriod: 2,
                     bookingBarSettings: {

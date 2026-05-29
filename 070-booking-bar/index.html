@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSOB – Booking Bar</title>
 
-    <!-- Shared configuration (portal key, host) -->
+    <!-- Shared configuration (portal key) -->
     <script src="../config.js"></script>
     <!-- Load Compusoft Onlinebooking controller -->
     <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
@@ -309,7 +309,6 @@
                 // Initialize full booking flow with deep link params
                 var initOptions = {
                     csobPortalKey: CSOB_PORTAL_KEY,
-                    csobHost: CSOB_HOST,
                     from: from,
                     to: to,
                     errorPanelWrapper: '#ErrorPanelWrapper',
