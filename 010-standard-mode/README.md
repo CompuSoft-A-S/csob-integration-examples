@@ -13,14 +13,13 @@ The simplest way to embed CSOB. The controller builds the entire page layout for
 ```js
 new csob.Controller({
     csobPortalKey: CSOB_PORTAL_KEY,
-    csobHost: CSOB_HOST,
     displayMode: 'STANDARD',
     mainWrapper: '#csob-app',
     disableHeightCalc: true   // let the host page own the height (see below)
 });
 ```
 
-`CSOB_PORTAL_KEY` and `CSOB_HOST` come from `../config.js` (see the [root README](../README.md)). CSOB injects its own CSS and builds the complete booking interface inside the `mainWrapper` element.
+`CSOB_PORTAL_KEY` comes from `../config.js` (see the [root README](../README.md)). CSOB injects its own CSS and builds the complete booking interface inside the `mainWrapper` element.
 
 ## Container height
 

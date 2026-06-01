@@ -34,7 +34,6 @@ The booking bar requires a server-side setting that can only be enabled by Compu
 ```js
 new csob.Controller({
     csobPortalKey: CSOB_PORTAL_KEY,
-    csobHost: CSOB_HOST,
     bookingBarWrapper: '#BookingBar',
     profileListWrapper: '#Results',        // optional — for on-page results
     calendarShowAvailability: true,         // show availability in calendar

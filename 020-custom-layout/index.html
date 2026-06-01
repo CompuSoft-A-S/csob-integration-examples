@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Compusoft Onlinebooking - Custom layout</title>
-    <!-- Shared configuration (portal key, host) -->
+    <!-- Shared configuration (portal key) -->
     <script src="../config.js"></script>
     <!-- Load Compusoft Onlinebooking controller scripts -->
     <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
@@ -197,8 +197,7 @@
                 // Configuration of CompuSoft OnlineBooking Engine (csobController)    
                 var initOptions = {
                     csobPortalKey: CSOB_PORTAL_KEY
-                    , csobHost: CSOB_HOST
-                    , redirectURLOnFeatureNotSupported: 'www.compusoft.com'
+                    , redirectUrlOnFeatureNotSupported: 'https://www.compusoft.com'
                     , errorPanelWrapper: '#ErrorPanelWrapper'
                     , initialCalendarWrapper: '#CalendarWrapper'
                     , secondaryCalendarWrapper: '#CalendarSmallWrapper'

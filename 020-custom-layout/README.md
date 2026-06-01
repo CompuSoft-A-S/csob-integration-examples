@@ -14,7 +14,6 @@ The host page owns the layout. Each CSOB control is placed into a specific conta
 ```js
 new csob.Controller({
     csobPortalKey: CSOB_PORTAL_KEY,
-    csobHost: CSOB_HOST,
     errorPanelWrapper: '#ErrorPanelWrapper',
     initialCalendarWrapper: '#CalendarWrapper',
     secondaryCalendarWrapper: '#CalendarSmallWrapper',

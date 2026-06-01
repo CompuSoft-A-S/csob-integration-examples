@@ -69,7 +69,6 @@
     // ─── Initialize ────────────────────────────────────────────────────
     var initOptions = {
         csobPortalKey: CSOB_PORTAL_KEY,
-        csobHost: CSOB_HOST,
 
         errorPanelWrapper: '#ErrorPanelWrapper',
         initialCalendarWrapper: '#CalendarWrapper',

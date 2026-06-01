@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Compusoft Onlinebooking - Quick start</title>
-    <!-- Shared configuration (portal key, host) -->
+    <!-- Shared configuration (portal key) -->
     <script src="../config.js"></script>
     <!-- Load Compusoft Onlinebooking controller -->
     <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
@@ -18,7 +18,6 @@
             setTimeout(function () {
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY
-                    , csobHost: CSOB_HOST
                     , displayMode: 'STANDARD'
                     , mainWrapper: '#csob-app'
                     // In STANDARD mode CSOB auto-calculates the container height.

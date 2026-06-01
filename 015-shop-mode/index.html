@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
-<!-- ###################################################################################### -->
-<!-- Demo 1b: Shop mode — built-in e-commerce style layout with product cards, nav, footer  -->
-<!-- ###################################################################################### -->
+<!-- ########################################################################################### -->
+<!-- This demo shows SHOP display mode — CSOB renders the webshop (sale of items, gift cards,    -->
+<!-- vouchers, add-ons) instead of the accommodation booking flow.                               -->
+<!-- Minimal setup: one wrapper div and displayMode: 'SHOP' in the options.                      -->
+<!--                                                                                             -->
+<!-- NOTE: SHOP mode requires a webshop reg key on your portal (CSPRODONLINESHOP or              -->
+<!-- CSPRODONLINEV3PREM). Without it CSOB shows an alert. Contact CompuSoft to enable it.        -->
+<!-- ########################################################################################### -->
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Compusoft Onlinebooking - Shop mode</title>
-    <!-- Shared configuration (portal key, host) -->
+    <title>CSOB – Shop Mode</title>
+
+    <!-- Shared configuration (portal key) -->
     <script src="../config.js"></script>
     <!-- Load Compusoft Onlinebooking controller -->
     <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
@@ -18,17 +24,20 @@
             setTimeout(function () {
                 new csob.Controller({
                     csobPortalKey: CSOB_PORTAL_KEY
-                    , csobHost: CSOB_HOST
                     , displayMode: 'SHOP'
                     , mainWrapper: '#csob-app'
+                    // In SHOP mode CSOB auto-calculates the container height.
+                    // Set this to true if you want to control the height yourself
+                    // via CSS on the container (see the height rule below).
+                    , disableHeightCalc: true
                 });
             });
         });
     </script>
     <style>
-        /* In SHOP mode CSOB sizes its inner scroll area from the wrapper's
-           offsetHeight. Give the container an explicit height — full viewport,
-           a fixed pixel value, or whatever fits your layout. */
+        /* When `disableHeightCalc: true` is set, the host page owns the height.
+           Give the container a sensible height — e.g. full viewport, a fixed
+           pixel value, or whatever fits your layout. */
         #csob-app {
             height: 100vh;
         }
@@ -36,7 +45,7 @@
 </head>
 
 <body>
-    <!-- This is the only element you provide. CSOB renders the shop layout inside it. -->
+    <!-- This is the only element you provide. CSOB renders the webshop inside it. -->
     <div id="csob-app"></div>
 </body>
 

@@ -1,36 +1,39 @@
 # 015 — Shop mode
 
-CSOB's built-in e-commerce style layout. Instead of the calendar-first `STANDARD` template, `SHOP` renders the booking flow as a product shop — top navigation bar, a scrollable product list with image cards, and a footer with payment icons.
+CSOB renders the **webshop** instead of the accommodation booking flow. Use this to sell items, gift cards, vouchers and add-ons.
 
 ## What it demonstrates
 
-- Loading the controller via a single `<script>` tag
 - Configuring with `displayMode: 'SHOP'`
-- Letting CSOB build the entire shop UI (nav, product cards, cart, checkout) inside one container
+- Letting CSOB build the complete shop interface inside a single wrapper
+- Taking control of the container height with `disableHeightCalc`
 
 ## Key configuration
 
 ```js
 new csob.Controller({
     csobPortalKey: CSOB_PORTAL_KEY,
-    csobHost: CSOB_HOST,
     displayMode: 'SHOP',
-    mainWrapper: '#csob-app'
+    mainWrapper: '#csob-app',
+    disableHeightCalc: true   // let the host page own the height (see below)
 });
 ```
 
-`CSOB_PORTAL_KEY` and `CSOB_HOST` come from `../config.js` (see the [root README](../README.md)). CSOB injects its own CSS and builds the complete shop interface inside the `mainWrapper` element.
+`CSOB_PORTAL_KEY` comes from `../config.js` (see the [root README](../README.md)). CSOB injects its own CSS and builds the complete shop interface inside the `mainWrapper` element.
+
+## Requires a webshop reg key
+
+SHOP mode needs a webshop reg key on your portal (`CSPRODONLINESHOP` or `CSPRODONLINEV3PREM`). Without it CSOB shows an alert instead of the shop. Contact CompuSoft to enable it.
 
 ## Container height
 
-`SHOP` mode sizes its inner scroll area (the product list) in pixels based on the wrapper's `offsetHeight`, minus the height of its own nav and footer bars. If the wrapper has no explicit height the scroll area collapses and no products are visible.
+In `SHOP` mode CSOB tries to auto-calculate the container height based on its content. The recommended approach is to take control of the height yourself:
 
-Give `#csob-app` a real height in CSS — full viewport, a fixed pixel value, or `min-height` matching your layout:
+1. Set `disableHeightCalc: true` in the init options.
+2. Give `#csob-app` an explicit height in CSS — e.g. `height: 100vh`, a fixed pixel value, or `min-height` matching your layout.
 
 ```css
 #csob-app { height: 100vh; }
 ```
 
-## Use case
-
-Ideal when the booking offering is the main purpose of the page and you want a ready-made shop look without building your own layout. Pair with a single `compubookProfileId` to scope the shop to one area/site, or leave it out to show the full portal.
+Leave `disableHeightCalc` off only if you specifically want CSOB's automatic height behaviour.

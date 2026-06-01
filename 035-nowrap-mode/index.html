@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<!-- ########################################################################################### -->
+<!-- This demo shows STANDARDNOWRAP display mode — the "no wrap" / base-component variant of      -->
+<!-- STANDARD. CSOB renders the booking component WITHOUT its own outer wrapper/chrome, so it     -->
+<!-- drops straight into your own page layout as just another block-level component.             -->
+<!--                                                                                             -->
+<!-- Use this when your site already provides the surrounding page frame (header, padding,        -->
+<!-- max-width, background) and you only want the bare booking UI inside it.                      -->
+<!--                                                                                             -->
+<!-- Compare with 010-standard-mode, which uses 'STANDARD' (CSOB owns the full container).        -->
+<!-- ########################################################################################### -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSOB – No-Wrap Mode</title>
+
+    <!-- Shared configuration (portal key) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                new csob.Controller({
+                    csobPortalKey: CSOB_PORTAL_KEY
+                    // 'STANDARDNOWRAP' = STANDARD without the outer CSOB wrapper.
+                    // Another no-wrap variant exists too: SHOPNOWRAP.
+                    , displayMode: 'STANDARDNOWRAP'
+                    , mainWrapper: '#csob-app'
+                });
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            background: #eef2f6;
+            color: #243b53;
+        }
+
+        /* The host page provides the page frame — CSOB only fills the inner card. */
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .page-header {
+            padding: 24px 0;
+        }
+
+        .page-header h1 {
+            margin: 0 0 4px;
+            font-size: 1.6rem;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #627d98;
+        }
+
+        /* This card is part of YOUR layout. CSOB renders inside it without
+           adding its own wrapper chrome. */
+        .booking-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(16, 42, 67, 0.08);
+            padding: 16px;
+            min-height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="page-header">
+            <h1>Book your stay</h1>
+            <p>The booking component below is embedded directly in our own page layout (no-wrap mode).</p>
+        </header>
+
+        <!-- Your own styled container. CSOB renders the bare component inside it. -->
+        <div class="booking-card">
+            <div id="csob-app"></div>
+        </div>
+    </div>
+</body>
+
+</html>

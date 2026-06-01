@@ -19,7 +19,6 @@ A compact search widget (the built-in CSOB Booking Bar) placed on a landing page
 ```js
 new csob.Controller({
     csobPortalKey: CSOB_PORTAL_KEY,
-    csobHost: CSOB_HOST,
     bookingBarWrapper: '#BookingBarWrapper',
     bookingBarSettings: {
         layout: 'horizontal',  // or 'vertical'
