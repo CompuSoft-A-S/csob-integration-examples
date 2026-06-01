@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!-- ###################################################################################### -->
+<!-- Demo 1b: Shop mode — built-in e-commerce style layout with product cards, nav, footer  -->
+<!-- ###################################################################################### -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compusoft Onlinebooking - Shop mode</title>
+    <!-- Shared configuration (portal key, host) -->
+    <script src="../config.js"></script>
+    <!-- Load Compusoft Onlinebooking controller -->
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                new csob.Controller({
+                    csobPortalKey: CSOB_PORTAL_KEY
+                    , csobHost: CSOB_HOST
+                    , displayMode: 'SHOP'
+                    , mainWrapper: '#csob-app'
+                });
+            });
+        });
+    </script>
+    <style>
+        /* In SHOP mode CSOB sizes its inner scroll area from the wrapper's
+           offsetHeight. Give the container an explicit height — full viewport,
+           a fixed pixel value, or whatever fits your layout. */
+        #csob-app {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- This is the only element you provide. CSOB renders the shop layout inside it. -->
+    <div id="csob-app"></div>
+</body>
+
+</html>
