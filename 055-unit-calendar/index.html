@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!-- ############################################################################################# -->
+<!-- Dedicated Unit Calendar example                                                               -->
+<!-- Shows the standalone per-unit availability calendar rendered by CSOB in wrapper mode.        -->
+<!-- The date bar, period buttons and unit rows are part of the Unit Calendar component itself.   -->
+<!-- ############################################################################################# -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSOB - Unit Calendar</title>
+
+    <script src="../config.js"></script>
+    <script src="https://v3.onlinebooking.dk/csobV2/csob.controller.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <p class="eyebrow">CSOB V3 example 055</p>
+            <h1>Dedicated Unit Calendar</h1>
+            <p class="lead">
+                This example embeds CSOB's standalone Unit Calendar component in wrapper mode.
+                Unlike booking bar availability, the calendar itself owns the date bar, period buttons,
+                and per-unit availability grid.
+            </p>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <span class="summary-label">From date</span>
+                    <strong id="SelectedFromDate">-</strong>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Search periods</span>
+                    <strong id="SelectedPeriods">-</strong>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Profile filter</span>
+                    <strong id="SelectedProfile">All profiles</strong>
+                </div>
+            </div>
+        </header>
+
+        <div class="layout">
+            <aside class="sidebar">
+                <section class="panel">
+                    <h2>Usage notes</h2>
+                    <p>
+                        The Unit Calendar is rendered into <code>#UnitCalendarWrapper</code> and enabled
+                        with <code>unitCalendarDisplayMode: 1</code>.
+                    </p>
+                    <p>
+                        Add <code>?cbpid=...</code> or <code>?cbpids=...</code> to the URL if you want to limit
+                        the example to one or more CompuBook profiles, similar to a custom accommodation selector
+                        on a host page.
+                    </p>
+
+                    <form id="ProfileScopeForm" class="scope-form">
+                        <label for="ProfileScopeInput">CompuBook profile id(s)</label>
+                        <input id="ProfileScopeInput" name="profileScope" type="text"
+                            placeholder="Example: 123 or 123,456,789">
+                        <button type="submit">Reload example</button>
+                    </form>
+                </section>
+
+                <div id="ErrorPanelWrapper" class="panel panel--bare"></div>
+                <div id="ProfileFilterWrapper" class="panel panel--bare"></div>
+                <div id="CartWrapper" class="panel panel--bare"></div>
+            </aside>
+
+            <main class="main-content">
+                <section class="panel panel--accent">
+                    <h2>Unit calendar wrapper</h2>
+                    <p>
+                        CSOB injects the dedicated unit calendar below, including the internal picker area,
+                        period buttons, navigation controls, and per-unit rows.
+                    </p>
+                </section>
+
+                <div id="UnitCalendarWrapper" class="calendar-surface"></div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
