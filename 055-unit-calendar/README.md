@@ -61,15 +61,6 @@ Example:
 
 That gives the user buttons for 1 week, 2 weeks, and 1 month, with 1 month preselected.
 
-## Unit Calendar vs. `calendarShowAvailability`
-
-These are not the same feature.
-
-- **Unit Calendar / enhedskalender** is a dedicated component with its own wrapper, its own picker area, and a per-unit availability grid.
-- **`calendarShowAvailability`** only augments the booking bar's date-picker popup with availability coloring. It does not render a standalone per-unit calendar component.
-
-If the goal is a page like "show me each unit and its availability across a period", you want **Unit Calendar**, not booking bar availability.
-
 ## External profile selector pattern
 
 This example includes a small host-page form that writes either `cbpid` or `cbpids` to the URL and reloads the page. That is the safe, public pattern to mimic a custom accommodation selector around the Unit Calendar.
